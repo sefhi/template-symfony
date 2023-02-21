@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  webserver:
+    build:
+      context: ${PWD}/.docker
+      args:
+        PHP_VERSION: 8.2
+    env_file:
+      - .env
+    container_name: 'webserver'
+    restart: 'unless-stopped'
+    ports:
+      - "41:80"
+    volumes:
+      - ./:/var/www/html
+      - ${PWD}/.docker/config/webserver/php.ini:/usr/local/etc/php/php.ini
+      - ${PWD}/.docker/config/webserver/vhosts:/etc/apache2/sites-enabled
+    environment:
+      XDEBUG_CONFIG: "client_host=host.docker.internal"
