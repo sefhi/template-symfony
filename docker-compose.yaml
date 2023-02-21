@@ -17,3 +17,4 @@ services:
       - ${PWD}/.docker/config/webserver/vhosts:/etc/apache2/sites-enabled
     environment:
       XDEBUG_CONFIG: "client_host=host.docker.internal"
+      PHP_CS_FIXER_IGNORE_ENV: 1

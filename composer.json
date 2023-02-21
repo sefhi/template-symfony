@@ -14,8 +14,6 @@
         "symfony/runtime": "6.2.*",
         "symfony/yaml": "6.2.*"
     },
-    "require-dev": {
-    },
     "config": {
         "allow-plugins": {
             "php-http/discovery": true,
@@ -63,5 +61,12 @@
             "allow-contrib": false,
             "require": "6.2.*"
         }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.14",
+        "phpunit/phpunit": "^10.0",
+        "symfony/browser-kit": "6.2.*",
+        "symfony/css-selector": "6.2.*",
+        "symfony/phpunit-bridge": "^6.2"
     }
 }
