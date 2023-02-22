@@ -26,8 +26,25 @@ jobs:
           key: ${{ runner.os }}-build-${{ hashFiles('**/Makefile') }}
 
   style-check:
-    needs: build
     runs-on: ubuntu-latest
-    path: ./.github/workflows/style-check.yml
+
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Restore built files
+        uses: actions/cache@v2
+        with:
+          path: |
+            /build
+          key: ${{ runner.os }}-build-${{ hashFiles('**/Makefile') }}
+        id: restore-cache
+
+      - name: 🧹 Fix code style with csfixer
+        run: make cs
+
+      - name: 🧐 Check code with phpstan
+        run: make static
       
 
