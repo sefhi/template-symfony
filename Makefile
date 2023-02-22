@@ -70,7 +70,7 @@ cs-fix:
 	@echo "Coding Standar Fixer Executed ✅"
 
 cs:
-	$(EXEC_PHP) ./vendor/bin/php-cs-fixer fix --dry-run --diff
+	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/php-cs-fixer fix --dry-run --diff
 	@echo "Coding Standar Fixer Executed ✅"
 
 static:
