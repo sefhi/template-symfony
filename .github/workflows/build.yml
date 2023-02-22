@@ -21,7 +21,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            /path/to/built/files
+            /build
           key: ${{ runner.os }}-build-${{ hashFiles('**/Makefile') }}
       
 
