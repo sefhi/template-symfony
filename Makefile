@@ -66,7 +66,7 @@ bash:
 
 #Linter
 cs-fix:
-	$(EXEC_PHP) ./vendor/bin/php-cs-fixer fix --diff
+	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/php-cs-fixer fix --diff
 	@echo "Coding Standar Fixer Executed ✅"
 
 cs:
@@ -74,4 +74,4 @@ cs:
 	@echo "Coding Standar Fixer Executed ✅"
 
 static:
-	$(EXEC_PHP) ./vendor/bin/phpstan analyse -c phpstan.neon.dist
+	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/phpstan analyse -c phpstan.neon.dist
