@@ -23,5 +23,10 @@ jobs:
           path: |
             /build
           key: ${{ runner.os }}-build-${{ hashFiles('**/Makefile') }}
+
+  style-check:
+    needs: build
+    runs-on: ubuntu-latest
+    path: ./.github/workflows/style-check.yml
       
 
