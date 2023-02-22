@@ -1,0 +1,26 @@
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  style-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Restore built files
+        uses: actions/cache@v2
+        with:
+          path: |
+            /path/to/built/files
+          key: ${{ runner.os }}-build-${{ hashFiles('**/Makefile') }}
+        id: restore-cache
+
+      - name: 🧹 Fix code style with csfixer
+        run: make cs
+
+      - name: 🧐 Check code with phpstan
+        run: make static

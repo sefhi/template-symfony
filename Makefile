@@ -69,6 +69,9 @@ cs-fix:
 	$(EXEC_PHP) ./vendor/bin/php-cs-fixer fix --diff
 	@echo "Coding Standar Fixer Executed ✅"
 
-cs-prev:
+cs:
 	$(EXEC_PHP) ./vendor/bin/php-cs-fixer fix --dry-run --diff
 	@echo "Coding Standar Fixer Executed ✅"
+
+static:
+	$(EXEC_PHP) ./vendor/bin/phpstan analyse -c phpstan.neon.dist

@@ -3,7 +3,7 @@ name: Build
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
     branches: [ develop ]
 
@@ -16,5 +16,12 @@ jobs:
 
       - name: 🐳 Build Webserver
         run: make start
+
+      - name: Cache built files
+        uses: actions/cache@v2
+        with:
+          path: |
+            /path/to/built/files
+          key: ${{ runner.os }}-build-${{ hashFiles('**/Makefile') }}
       
 
