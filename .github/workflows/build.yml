@@ -1,15 +1,14 @@
-name: Build
+name: CI
 
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
     branches: [ develop ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -18,33 +17,13 @@ jobs:
       - name: 🐳 Build Webserver
         run: make start
 
-      - name: Cache built files
-        uses: actions/cache@v2
-        with:
-          path: |
-            /build
-          key: ${{ runner.os }}-build-${{ hashFiles('**/Makefile') }}
+      - name: 🎻 Install dependencies
+        run: make deps
 
-  style-check:
-    runs-on: ubuntu-latest
+      - name: 🔦 Lint
+        run: make lint
 
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Restore built files
-        uses: actions/cache@v2
-        with:
-          path: |
-            /build
-          key: ${{ runner.os }}-build-${{ hashFiles('**/Makefile') }}
-        id: restore-cache
-
-      - name: 🧹 Fix code style with csfixer
-        run: make cs
-
-      - name: 🧐 Check code with phpstan
-        run: make static
+      - name: 🏁 Static analysis
+        run: make static-analysis
       
 

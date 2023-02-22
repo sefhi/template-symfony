@@ -36,7 +36,6 @@ composer composer-install ci composer-update composer-require cr: create_env_fil
 start: create_env_file
 	@echo "🚀 Deploy!!!"
 	@$(DOCKER_COMPOSE) up -d
-	make deps
 stop:
 	$(DOCKER_COMPOSE) stop
 down:
@@ -65,13 +64,14 @@ bash:
 	$(DOCKER_COMPOSE) exec -it $(CONTAINER) /bin/bash
 
 #Linter
-cs-fix:
+style: lint static-analysis
+lint-diff:
 	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/php-cs-fixer fix --diff
 	@echo "Coding Standar Fixer Executed ✅"
 
-cs:
+lint:
 	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/php-cs-fixer fix --dry-run --diff
 	@echo "Coding Standar Fixer Executed ✅"
 
-static:
+static-analysis:
 	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/phpstan analyse -c phpstan.neon.dist
