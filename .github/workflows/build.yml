@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 🐳 Build Webserver
+        run: make start
+
+      - name: 🎻 Install dependencies
+        run: make deps
+
+      - name: 🔦 Lint
+        run: make lint
+
+      - name: 🏁 Static analysis
+        run: make static-analysis
+      
+

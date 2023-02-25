@@ -1,0 +1,8 @@
+parameters:
+	excludePaths:
+		- tests
+	level: max
+	paths: ['src']
+	checkMissingIterableValueType: false
+	checkGenericClassInNonGenericObjectType: false
+	checkExplicitMixed: false
