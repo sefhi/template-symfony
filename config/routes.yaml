@@ -3,3 +3,8 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+api_heath_check:
+    path:       /api/healthcheck
+    controller: App\Controller\HealthcheckController
+    methods:    GET
