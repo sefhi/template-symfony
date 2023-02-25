@@ -10,11 +10,14 @@ CURRENT_UID  := $(shell id -u)
 
 .DEFAULT_GOAL := deploy
 
+.PHONY: deploy build deps update-deps composer-install ci composer-update cu composer-require cr composer start stop down recreate rebuild test reload clear bash style lint lint-diff static-analysis
+
 deploy: build
 	@echo "📦 Build done"
 
 build: create_env_file rebuild
 
+# 🚚 Dependencies
 deps: composer-install
 
 update-deps: composer-update
@@ -49,21 +52,23 @@ rebuild:
 	$(DOCKER_COMPOSE) build --pull --force-rm --no-cache
 	make start
 
-test:
+# 🧪 Tests
+test: create_env_file
 	docker exec -t $(CONTAINER) ./vendor/bin/phpunit -v
 
 # 🦝 Apache
 reload:
 	$(EXEC) /bin/bash service apache2 restart || true
 
-#clear cache
+# 🧹 Clear cache
 clear:
 	$(SYMFONY) cache:clear
 
+# 🐚 Shell
 bash:
 	$(DOCKER_COMPOSE) exec -it $(CONTAINER) /bin/bash
 
-#Linter
+# 🦊 Linter
 style: lint static-analysis
 lint-diff:
 	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/php-cs-fixer fix --diff
