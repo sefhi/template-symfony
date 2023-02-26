@@ -7,11 +7,8 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HealthcheckController
+class HealthcheckController extends BaseController
 {
-    /**
-     * @Route("/healthcheck", name="healthcheck")
-     */
     public function __invoke(): JsonResponse
     {
         $data = [
@@ -20,5 +17,10 @@ class HealthcheckController
         ];
 
         return new JsonResponse($data);
+    }
+
+    protected function exceptions(): array
+    {
+        return [];
     }
 }
