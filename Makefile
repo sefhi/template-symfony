@@ -70,11 +70,11 @@ bash:
 
 # 🦊 Linter
 style: lint static-analysis
-lint-diff:
+lint:
 	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/php-cs-fixer fix --diff
 	@echo "Coding Standar Fixer Executed ✅"
 
-lint:
+lint-diff:
 	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/php-cs-fixer fix --dry-run --diff
 	@echo "Coding Standar Fixer Executed ✅"
 

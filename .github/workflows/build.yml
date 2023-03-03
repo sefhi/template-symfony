@@ -21,7 +21,7 @@ jobs:
         run: make deps
 
       - name: 🔦 Lint
-        run: make lint
+        run: make lint-diff
 
       - name: 🏁 Static analysis
         run: make static-analysis
