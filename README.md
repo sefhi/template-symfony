@@ -19,6 +19,10 @@ API o microservicio.
 
 1. Clona el repositorio o haz un fork
 2. Escribe por terminal el comando `make`. Este comando instalara todo lo necesario para arrancar la aplicación.
+3. El api está disponible en la url http://localhost:41
+   4. Tienes un endpoint para verificar si la aplicación funciona http://localhost:41/api/healthcheck
+
+```Puedes cambiar el puerto de salida 41, en el fichero docker-compose por el que más te guste.```
 
 ## 🚀 Comandos Útiles
 
