@@ -17,9 +17,13 @@
     <server name="KERNEL_CLASS" value="App\Kernel"/>
   </php>
   <testsuites>
-    <testsuite name="Project Test Suite">
+    <testsuite name="Project Unit Test Suite">
       <directory>tests/Unit</directory>
+    </testsuite>
+    <testsuite name="Project Integration Test Suite">
       <directory>tests/Integration</directory>
+    </testsuite>
+    <testsuite name="Project Functional Test Suite">
       <directory>tests/Functional</directory>
     </testsuite>
   </testsuites>
