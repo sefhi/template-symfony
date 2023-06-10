@@ -6,14 +6,7 @@ namespace Shared\Domain\ValueObject;
 
 abstract class StringValueObject
 {
-    public function __construct(protected string $value)
-    {
-    }
-
-    public function __toString(): string
-    {
-        return $this->value;
-    }
+    abstract public function __toString(): string;
 
     abstract public function value(): string;
 

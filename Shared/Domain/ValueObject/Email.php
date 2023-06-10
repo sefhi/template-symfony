@@ -6,10 +6,8 @@ namespace Shared\Domain\ValueObject;
 
 final class Email extends StringValueObject
 {
-    private function __construct(protected string $value)
+    private function __construct(private readonly string $value)
     {
-        parent::__construct($this->value);
-
         $this->ensureIsValidEmail();
     }
 
@@ -30,5 +28,10 @@ final class Email extends StringValueObject
         }
 
         throw new \InvalidArgumentException('Email not is valid');
+    }
+
+    public function __toString(): string
+    {
+        return $this->value;
     }
 }
