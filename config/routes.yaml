@@ -8,3 +8,8 @@ api_heath_check:
     path:       /api/healthcheck
     controller: App\Controller\HealthcheckController
     methods:    GET
+
+api_command_check:
+    path: /api/commands
+    controller: App\Controller\CommandHandlerController
+    methods: POST

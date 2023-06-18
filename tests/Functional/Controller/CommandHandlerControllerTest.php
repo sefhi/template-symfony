@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Functional\Controller;
 
+use App\Controller\CommandHandlerController;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class HealthcheckControllerTest extends WebTestCase
+final class CommandHandlerControllerTest extends WebTestCase
 {
     private KernelBrowser $client;
 
@@ -15,23 +18,26 @@ class HealthcheckControllerTest extends WebTestCase
     }
 
     /** @test */
-    public function itShouldReturnAnOk(): void
+    public function itShouldExecuteCommandHandler(): void
     {
         // GIVEN
+        $parameters = [
+            'foo' => 'foo'
+        ];
 
         // WHEN
 
-        $this->client
-            ->request(
-                'GET',
-                'api/healthcheck',
-            );
+        $this->client->request(
+            'POST',
+            '/api/commands',
+            $parameters
+        );
 
         $response = $this->client->getResponse();
+        $result = json_decode($response->getContent());
 
         // THEN
 
         self::assertResponseIsSuccessful();
-        self::assertEquals('OK', json_decode($response->getContent(), true)['status']);
     }
 }
