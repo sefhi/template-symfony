@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller;
 
-use App\Controller\CommandHandlerController;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -22,7 +21,7 @@ final class CommandHandlerControllerTest extends WebTestCase
     {
         // GIVEN
         $parameters = [
-            'foo' => 'foo'
+            'foo' => 'foo',
         ];
 
         // WHEN
@@ -34,7 +33,7 @@ final class CommandHandlerControllerTest extends WebTestCase
         );
 
         $response = $this->client->getResponse();
-        $result = json_decode($response->getContent());
+        $result   = json_decode($response->getContent());
 
         // THEN
 
