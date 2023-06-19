@@ -10,6 +10,6 @@ api_heath_check:
     methods:    GET
 
 api_command_check:
-    path: /api/commands
-    controller: App\Controller\CommandHandlerController
+    path: /api/foo
+    controller: App\Controller\CreateFooController
     methods: POST

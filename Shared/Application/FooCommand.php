@@ -6,7 +6,7 @@ namespace Shared\Application;
 
 use Shared\Domain\Bus\Command\Command;
 
-final class TestCommand implements Command
+final class FooCommand implements Command
 {
     private function __construct(
         private readonly string $foo,

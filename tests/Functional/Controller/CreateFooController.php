@@ -7,7 +7,7 @@ namespace App\Tests\Functional\Controller;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-final class CommandHandlerControllerTest extends WebTestCase
+final class CreateFooController extends WebTestCase
 {
     private KernelBrowser $client;
 
@@ -28,7 +28,7 @@ final class CommandHandlerControllerTest extends WebTestCase
 
         $this->client->request(
             'POST',
-            '/api/commands',
+            '/api/foo',
             $parameters
         );
 
