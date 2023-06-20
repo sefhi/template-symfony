@@ -6,10 +6,10 @@ controllers:
 
 api_heath_check:
     path:       /api/healthcheck
-    controller: App\Controller\HealthcheckController
+    controller: App\Controller\Shared\HealthcheckController
     methods:    GET
 
 api_command_check:
     path: /api/foo
-    controller: App\Controller\CreateFooController
+    controller: App\Controller\Example\CreateFooController
     methods: POST
