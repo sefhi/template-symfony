@@ -26,7 +26,7 @@ class SymfonyExceptionsHttpStatusCodeMappingTest extends TestCase
         self::assertSame($httpStatusCode, $this->exceptionMappings->statusCodeFor($exceptionClass));
     }
 
-    public function exceptionsAndCode(): \Iterator
+    public static function exceptionsAndCode(): \Iterator
     {
         yield [
             \RuntimeException::class,

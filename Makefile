@@ -56,6 +56,9 @@ rebuild:
 test: create_env_file
 	docker exec -t $(CONTAINER) ./vendor/bin/phpunit -v
 
+test/coverage: create_env_file
+	docker exec -t $(CONTAINER) ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml --order-by=random
+
 # 🦝 Apache
 reload:
 	$(EXEC) /bin/bash service apache2 restart || true
