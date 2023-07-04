@@ -25,5 +25,8 @@ jobs:
 
       - name: 🏁 Static analysis
         run: make static-analysis
+
+      - name:  ✅ Tests
+        run: make test/coverage
       
 
