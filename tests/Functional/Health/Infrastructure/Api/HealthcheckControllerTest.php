@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
-namespace App\Tests\Functional\Example\Controller;
+namespace App\Tests\Functional\Health\Infrastructure\Api;
 
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-final class CreateFooControllerTest extends WebTestCase
+class HealthcheckControllerTest extends WebTestCase
 {
     private KernelBrowser $client;
 
@@ -17,26 +15,23 @@ final class CreateFooControllerTest extends WebTestCase
     }
 
     /** @test */
-    public function itShouldExecuteCommandHandler(): void
+    public function itShouldReturnAnOk(): void
     {
         // GIVEN
-        $parameters = [
-            'foo' => 'foo',
-        ];
 
         // WHEN
 
-        $this->client->request(
-            'POST',
-            '/api/foo',
-            $parameters
-        );
+        $this->client
+            ->request(
+                'GET',
+                'api/health',
+            );
 
         $response = $this->client->getResponse();
-        $result   = json_decode($response->getContent());
 
         // THEN
 
         self::assertResponseIsSuccessful();
+        self::assertEquals('OK', json_decode($response->getContent(), true)['status']);
     }
 }
