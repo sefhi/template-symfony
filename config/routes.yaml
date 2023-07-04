@@ -1,10 +1,4 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
-
-api_heath_check:
-    path:       /api/healthcheck
-    controller: App\Controller\HealthcheckController
-    methods:    GET
+Health:
+    prefix: /api/health
+    resource: ../src/Health/Infrastructure/Api/routes.yaml
+    trailing_slash_on_root: false

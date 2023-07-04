@@ -20,12 +20,20 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    Shared\:
-        resource: '../Shared/'
-
-    Shared\Infrastructure\Listener\SymfonyExceptionListener:
+    App\Shared\Infrastructure\Listener\SymfonyExceptionListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onException }
+
+    _instanceof:
+        # all services implementing the CommandHandlerInterface
+        # will be registered on the command.bus bus
+        App\Shared\Domain\Bus\Command\CommandHandler:
+            tags:
+                - { name: messenger.message_handler, bus: command.bus }
+
+        App\Shared\Domain\Bus\Query\QueryHandler:
+            tags:
+                - { name: messenger.message_handler, bus: query.bus }
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
