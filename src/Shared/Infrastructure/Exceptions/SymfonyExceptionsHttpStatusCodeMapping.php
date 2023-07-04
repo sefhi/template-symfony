@@ -7,7 +7,7 @@ namespace App\Shared\Infrastructure\Exceptions;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class ExceptionsHttpStatusCodeMapping
+class SymfonyExceptionsHttpStatusCodeMapping
 {
     private const DEFAULT_STATUS_CODE = Response::HTTP_INTERNAL_SERVER_ERROR;
     private array $exceptions         = [

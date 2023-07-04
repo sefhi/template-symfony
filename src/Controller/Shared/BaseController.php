@@ -10,7 +10,7 @@ use App\Shared\Domain\Bus\Command\CommandResponse;
 use App\Shared\Domain\Bus\Query\Query;
 use App\Shared\Domain\Bus\Query\QueryBusInterface;
 use App\Shared\Domain\Bus\Query\QueryResponse;
-use App\Shared\Infrastructure\Exceptions\ExceptionsHttpStatusCodeMapping;
+use App\Shared\Infrastructure\Exceptions\SymfonyExceptionsHttpStatusCodeMapping;
 
 use function Lambdish\Phunctional\each;
 
@@ -19,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 abstract class BaseController extends AbstractController
 {
     public function __construct(
-        ExceptionsHttpStatusCodeMapping $exceptionMapping,
+        SymfonyExceptionsHttpStatusCodeMapping $exceptionMapping,
         protected readonly CommandBusInterface $commandBus,
         protected readonly QueryBusInterface $queryBus,
     ) {
