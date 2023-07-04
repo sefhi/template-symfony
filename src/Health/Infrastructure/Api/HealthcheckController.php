@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Shared;
+namespace App\Health\Infrastructure\Api;
 
+use App\Controller\Shared\BaseController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class HealthcheckController extends BaseController
