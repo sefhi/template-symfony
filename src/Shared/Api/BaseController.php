@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Shared;
+namespace App\Shared\Api;
 
 use App\Shared\Domain\Bus\Command\Command;
 use App\Shared\Domain\Bus\Command\CommandBusInterface;
@@ -11,10 +11,8 @@ use App\Shared\Domain\Bus\Query\Query;
 use App\Shared\Domain\Bus\Query\QueryBusInterface;
 use App\Shared\Domain\Bus\Query\QueryResponse;
 use App\Shared\Infrastructure\Exceptions\SymfonyExceptionsHttpStatusCodeMapping;
-
-use function Lambdish\Phunctional\each;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use function Lambdish\Phunctional\each;
 
 abstract class BaseController extends AbstractController
 {
