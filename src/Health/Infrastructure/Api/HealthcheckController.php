@@ -13,7 +13,7 @@ class HealthcheckController extends BaseController
     public function __invoke(): JsonResponse
     {
         return new JsonResponse(
-            $this->ask(new GetHealthQuery())
+            $this->query(new GetHealthQuery())
         );
     }
 

@@ -19,7 +19,7 @@ final class InMemorySymfonyCommandBus implements CommandBusInterface
         $this->messageBus = $this->commandBus;
     }
 
-    public function dispatch(Command $command): ?CommandResponse
+    public function command(Command $command): ?CommandResponse
     {
         return $this->handle($command);
     }

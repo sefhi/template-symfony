@@ -35,14 +35,14 @@ abstract class BaseController extends AbstractController
         );
     }
 
-    public function ask(Query $query): ?QueryResponse
+    public function query(Query $query): ?QueryResponse
     {
-        return $this->queryBus->ask($query);
+        return $this->queryBus->query($query);
     }
 
-    public function dispatch(Command $command): ?CommandResponse
+    public function command(Command $command): ?CommandResponse
     {
-        return $this->commandBus->dispatch($command);
+        return $this->commandBus->command($command);
     }
 
     protected function deserialize(Request $request, string $class): mixed
