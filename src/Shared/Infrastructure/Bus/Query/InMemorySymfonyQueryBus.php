@@ -19,7 +19,7 @@ final class InMemorySymfonyQueryBus implements QueryBusInterface
         $this->messageBus = $this->queryBus;
     }
 
-    public function ask(Query $query): ?QueryResponse
+    public function query(Query $query): ?QueryResponse
     {
         return $this->handle($query);
     }
