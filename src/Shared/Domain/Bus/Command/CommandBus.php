@@ -2,7 +2,7 @@
 
 namespace App\Shared\Domain\Bus\Command;
 
-interface CommandBusInterface
+interface CommandBus
 {
     public function command(Command $command): ?CommandResponse;
 }

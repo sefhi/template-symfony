@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Shared\Infrastructure\Bus\Command;
 
 use App\Shared\Domain\Bus\Command\Command;
-use App\Shared\Domain\Bus\Command\CommandBusInterface;
+use App\Shared\Domain\Bus\Command\CommandBus;
 use App\Shared\Domain\Bus\Command\CommandResponse;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-final class InMemorySymfonyCommandBus implements CommandBusInterface
+final class InMemorySymfonyCommandBus implements CommandBus
 {
     use HandleTrait;
 

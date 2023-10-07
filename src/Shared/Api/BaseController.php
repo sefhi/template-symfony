@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Shared\Api;
 
 use App\Shared\Domain\Bus\Command\Command;
-use App\Shared\Domain\Bus\Command\CommandBusInterface;
+use App\Shared\Domain\Bus\Command\CommandBus;
 use App\Shared\Domain\Bus\Command\CommandResponse;
 use App\Shared\Domain\Bus\Query\Query;
 use App\Shared\Domain\Bus\Query\QueryBus;
@@ -24,7 +24,7 @@ abstract class BaseController extends AbstractController
 {
     public function __construct(
         SymfonyExceptionsHttpStatusCodeMapping $exceptionMapping,
-        protected readonly CommandBusInterface $commandBus,
+        protected readonly CommandBus          $commandBus,
         protected readonly QueryBus            $queryBus,
         protected readonly SerializerInterface $serializer,
         protected readonly ValidatorInterface  $validator,
