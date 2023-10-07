@@ -24,10 +24,10 @@ abstract class BaseController extends AbstractController
 {
     public function __construct(
         SymfonyExceptionsHttpStatusCodeMapping $exceptionMapping,
-        protected readonly CommandBus          $commandBus,
-        protected readonly QueryBus            $queryBus,
+        protected readonly CommandBus $commandBus,
+        protected readonly QueryBus $queryBus,
         protected readonly SerializerInterface $serializer,
-        protected readonly ValidatorInterface  $validator,
+        protected readonly ValidatorInterface $validator,
     ) {
         each(
             fn (int $httpCode, string $exceptionClass) => $exceptionMapping->register($exceptionClass, $httpCode),
