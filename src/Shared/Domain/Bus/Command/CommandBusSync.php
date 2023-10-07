@@ -2,7 +2,7 @@
 
 namespace App\Shared\Domain\Bus\Command;
 
-interface CommandBusSyncInterface
+interface CommandBusSync
 {
     public function dispatch(CommandSync $command): ?CommandResponse;
 }

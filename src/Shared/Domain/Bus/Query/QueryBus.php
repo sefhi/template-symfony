@@ -2,7 +2,7 @@
 
 namespace App\Shared\Domain\Bus\Query;
 
-interface QueryBusInterface
+interface QueryBus
 {
     public function query(Query $query): ?QueryResponse;
 }
