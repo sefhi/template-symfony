@@ -1,6 +1,6 @@
 # VARIABLES
 DOCKER_COMPOSE = docker compose
-CONTAINER      = webserver
+CONTAINER      = webserver-template
 EXEC           = docker exec -t --user=root $(CONTAINER)
 EXEC_PHP       = $(EXEC) php
 SYMFONY        = $(EXEC_PHP) bin/console
@@ -54,7 +54,7 @@ rebuild:
 
 # 🧪 Tests
 test: create_env_file
-	docker exec -t $(CONTAINER) ./vendor/bin/phpunit -v
+	docker exec -t $(CONTAINER) ./vendor/bin/phpunit --no-coverage
 
 test/coverage: create_env_file
 	docker exec -t $(CONTAINER) ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml --order-by=random
