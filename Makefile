@@ -51,6 +51,8 @@ rebuild:
 	@echo "🔥 Rebuild container!!!"
 	$(DOCKER_COMPOSE) build --pull --force-rm --no-cache
 	make start
+	make deps
+
 
 # 🧪 Tests
 test: create_env_file
