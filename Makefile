@@ -18,6 +18,7 @@ export PORT_HTTP_EXTERNAL=$(PORT_HTTP_EXTERNAL); \
 export PORT_HTTP_INTERNAL=$(PORT_HTTP_INTERNAL);
 endef
 
+
 .DEFAULT_GOAL := deploy
 
 .PHONY: deploy build deps update-deps composer-install ci composer-update cu composer-require cr composer start stop down recreate rebuild test reload clear bash style lint lint-diff static-analysis
