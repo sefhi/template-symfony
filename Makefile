@@ -1,12 +1,23 @@
 # VARIABLES
+ENV_FILE	   = .docker/.env
 DOCKER_COMPOSE = docker compose
-CONTAINER      = webserver-template
-EXEC           = docker exec -t --user=root $(CONTAINER)
+CONTAINER_SUFFIX = $(shell source $(ENV_FILE); echo $$CONTAINER_SUFFIX)
+PORT_HTTP_EXTERNAL = $(shell source $(ENV_FILE); echo $$PORT_HTTP_EXTERNAL)
+PORT_HTTP_INTERNAL = $(shell source $(ENV_FILE); echo $$PORT_HTTP_INTERNAL)
+CONTAINER      = webserver
+EXEC           = docker exec -t --user=root $(CONTAINER)-$(CONTAINER_SUFFIX)
 EXEC_PHP       = $(EXEC) php
 SYMFONY        = $(EXEC_PHP) bin/console
 COMPOSER       = $(EXEC) composer
 CURRENT-DIR  := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 CURRENT_UID  := $(shell id -u)
+
+define EXPORT_ENV_VARS
+export CONTAINER_SUFFIX=$(CONTAINER_SUFFIX); \
+export PORT_HTTP_EXTERNAL=$(PORT_HTTP_EXTERNAL); \
+export PORT_HTTP_INTERNAL=$(PORT_HTTP_INTERNAL);
+endef
+
 
 .DEFAULT_GOAL := deploy
 
@@ -38,28 +49,27 @@ composer composer-install ci composer-update composer-require cr: create_env_fil
 # 🐳 Docker Compose
 start: create_env_file
 	@echo "🚀 Deploy!!!"
-	@$(DOCKER_COMPOSE) up -d
+	@$(call EXPORT_ENV_VARS) $(DOCKER_COMPOSE) up -d
 stop:
 	$(DOCKER_COMPOSE) stop
 down:
 	$(DOCKER_COMPOSE) down
 recreate:
 	@echo "🔥 Recreate container!!!"
-	$(DOCKER_COMPOSE) up -d --build --remove-orphans --force-recreate
+	@$(call EXPORT_ENV_VARS) $(DOCKER_COMPOSE) up -d --build --remove-orphans --force-recreate
 	make deps
 rebuild:
 	@echo "🔥 Rebuild container!!!"
-	$(DOCKER_COMPOSE) build --pull --force-rm --no-cache
+	@$(call EXPORT_ENV_VARS) $(DOCKER_COMPOSE) build --pull --force-rm --no-cache
 	make start
 	make deps
 
-
 # 🧪 Tests
 test: create_env_file
-	docker exec -t $(CONTAINER) ./vendor/bin/phpunit --no-coverage
+	$(EXEC)  ./vendor/bin/phpunit --no-coverage
 
 test/coverage: create_env_file
-	docker exec -t $(CONTAINER) ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml --order-by=random
+	$(EXEC)  ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml --order-by=random
 
 # 🦝 Apache
 reload:
@@ -76,12 +86,12 @@ bash:
 # 🦊 Linter
 style: lint static-analysis
 lint:
-	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/php-cs-fixer fix --diff
+	$(EXEC) ./vendor/bin/php-cs-fixer fix --diff
 	@echo "Coding Standar Fixer Executed ✅"
 
 lint-diff:
-	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/php-cs-fixer fix --dry-run --diff
+	$(EXEC)  ./vendor/bin/php-cs-fixer fix --dry-run --diff
 	@echo "Coding Standar Fixer Executed ✅"
 
 static-analysis:
-	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/phpstan analyse -c phpstan.neon.dist
+	$(EXEC)  ./vendor/bin/phpstan analyse -c phpstan.neon.dist

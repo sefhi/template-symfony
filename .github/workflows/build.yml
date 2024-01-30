@@ -5,7 +5,7 @@ on:
   push:
     branches: [ main, develop ]
   pull_request:
-    branches: [ develop ]
+    branches: [ main, develop ]
 
 jobs:
   build:
@@ -13,6 +13,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Load .env file
+        uses: c-py/action-dotenv-to-setenv@v2
+        with:
+          env-file: .docker/.env
 
       - name: 🐳 Build Webserver
         run: make start
