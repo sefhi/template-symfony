@@ -66,10 +66,10 @@ rebuild:
 
 # 🧪 Tests
 test: create_env_file
-	docker exec -t $(CONTAINER) ./vendor/bin/phpunit --no-coverage
+	$(EXEC)  ./vendor/bin/phpunit --no-coverage
 
 test/coverage: create_env_file
-	docker exec -t $(CONTAINER) ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml --order-by=random
+	$(EXEC)  ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml --order-by=random
 
 # 🦝 Apache
 reload:
@@ -86,12 +86,12 @@ bash:
 # 🦊 Linter
 style: lint static-analysis
 lint:
-	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/php-cs-fixer fix --diff
+	$(EXEC) ./vendor/bin/php-cs-fixer fix --diff
 	@echo "Coding Standar Fixer Executed ✅"
 
 lint-diff:
-	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/php-cs-fixer fix --dry-run --diff
+	$(EXEC)  ./vendor/bin/php-cs-fixer fix --dry-run --diff
 	@echo "Coding Standar Fixer Executed ✅"
 
 static-analysis:
-	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/phpstan analyse -c phpstan.neon.dist
+	$(EXEC)  ./vendor/bin/phpstan analyse -c phpstan.neon.dist
