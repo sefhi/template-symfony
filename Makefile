@@ -4,7 +4,7 @@ DOCKER_COMPOSE = docker compose
 CONTAINER_SUFFIX = $(shell source $(ENV_FILE); echo $$CONTAINER_SUFFIX)
 PORT_HTTP_EXTERNAL = $(shell source $(ENV_FILE); echo $$PORT_HTTP_EXTERNAL)
 PORT_HTTP_INTERNAL = $(shell source $(ENV_FILE); echo $$PORT_HTTP_INTERNAL)
-CONTAINER      = webserver-${CONTAINER_SUFFIX}
+CONTAINER      = webserver
 EXEC           = docker exec -t --user=root $(CONTAINER)
 EXEC_PHP       = $(EXEC) php
 SYMFONY        = $(EXEC_PHP) bin/console
