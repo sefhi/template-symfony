@@ -1,16 +1,17 @@
 version: "3.9"
 services:
-  webserver-template:
+  webserver:
     build:
       context: ${PWD}/.docker
       args:
         PHP_VERSION: 8.2
     env_file:
       - .env
-    container_name: 'webserver-template'
+      - .docker/.env
+    container_name: 'webserver-${CONTAINER_SUFFIX}'
     restart: 'unless-stopped'
     ports:
-      - "41:80"
+      - "${PORT_HTTP_EXTERNAL}:${PORT_HTTP_INTERNAL}"
     volumes:
       - ./:/var/www/html
       - ${PWD}/.docker/config/webserver/php.ini:/usr/local/etc/php/php.ini

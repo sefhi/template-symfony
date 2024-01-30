@@ -1,12 +1,22 @@
 # VARIABLES
+ENV_FILE	   = .docker/.env
 DOCKER_COMPOSE = docker compose
-CONTAINER      = webserver-template
+CONTAINER_SUFFIX = $(shell source $(ENV_FILE); echo $$CONTAINER_SUFFIX)
+PORT_HTTP_EXTERNAL = $(shell source $(ENV_FILE); echo $$PORT_HTTP_EXTERNAL)
+PORT_HTTP_INTERNAL = $(shell source $(ENV_FILE); echo $$PORT_HTTP_INTERNAL)
+CONTAINER      = webserver-${CONTAINER_SUFFIX}
 EXEC           = docker exec -t --user=root $(CONTAINER)
 EXEC_PHP       = $(EXEC) php
 SYMFONY        = $(EXEC_PHP) bin/console
 COMPOSER       = $(EXEC) composer
 CURRENT-DIR  := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 CURRENT_UID  := $(shell id -u)
+
+define EXPORT_ENV_VARS
+export CONTAINER_SUFFIX=$(CONTAINER_SUFFIX); \
+export PORT_HTTP_EXTERNAL=$(PORT_HTTP_EXTERNAL); \
+export PORT_HTTP_INTERNAL=$(PORT_HTTP_INTERNAL);
+endef
 
 .DEFAULT_GOAL := deploy
 
@@ -38,21 +48,20 @@ composer composer-install ci composer-update composer-require cr: create_env_fil
 # 🐳 Docker Compose
 start: create_env_file
 	@echo "🚀 Deploy!!!"
-	@$(DOCKER_COMPOSE) up -d
+	@$(call EXPORT_ENV_VARS) $(DOCKER_COMPOSE) up -d
 stop:
 	$(DOCKER_COMPOSE) stop
 down:
 	$(DOCKER_COMPOSE) down
 recreate:
 	@echo "🔥 Recreate container!!!"
-	$(DOCKER_COMPOSE) up -d --build --remove-orphans --force-recreate
+	@$(call EXPORT_ENV_VARS) $(DOCKER_COMPOSE) up -d --build --remove-orphans --force-recreate
 	make deps
 rebuild:
 	@echo "🔥 Rebuild container!!!"
-	$(DOCKER_COMPOSE) build --pull --force-rm --no-cache
+	@$(call EXPORT_ENV_VARS) $(DOCKER_COMPOSE) build --pull --force-rm --no-cache
 	make start
 	make deps
-
 
 # 🧪 Tests
 test: create_env_file
