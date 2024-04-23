@@ -34,7 +34,7 @@ composer-update cu: ACTION=update $(module)
 composer-require cr: ACTION=require $(module)
 
 composer composer-install ci composer-update composer-require cr: create_env_file
-	$(COMPOSER) $(ACTION) \
+	@$(COMPOSER) $(ACTION) \
 			--ignore-platform-reqs \
 			--no-ansi
 # 🐳 Docker Compose
