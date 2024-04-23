@@ -17,8 +17,8 @@ jobs:
       - name: 🐳 Build Webserver
         run: make start
 
-      - name: 🎻 Install dependencies
-        run: make deps
+#      - name: 🎻 Install dependencies
+#        run: make deps
 
       - name: 🔦 Lint
         run: make lint-diff
