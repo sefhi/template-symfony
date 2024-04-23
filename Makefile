@@ -1,22 +1,13 @@
 # VARIABLES
 ENV_FILE	   = .docker/.env
 DOCKER_COMPOSE = docker compose
-CONTAINER_SUFFIX = $(shell source $(ENV_FILE); echo $$CONTAINER_SUFFIX)
-PORT_HTTP_EXTERNAL = $(shell source $(ENV_FILE); echo $$PORT_HTTP_EXTERNAL)
-PORT_HTTP_INTERNAL = $(shell source $(ENV_FILE); echo $$PORT_HTTP_INTERNAL)
-CONTAINER      = webserver
-EXEC           = docker exec -t --user=root $(CONTAINER)-$(CONTAINER_SUFFIX)
+CONTAINER      = php
+EXEC           = $(DOCKER_COMPOSE) exec -t $(CONTAINER)
 EXEC_PHP       = $(EXEC) php
 SYMFONY        = $(EXEC_PHP) bin/console
 COMPOSER       = $(EXEC) composer
 CURRENT-DIR  := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 CURRENT_UID  := $(shell id -u)
-
-define EXPORT_ENV_VARS
-export CONTAINER_SUFFIX=$(CONTAINER_SUFFIX); \
-export PORT_HTTP_EXTERNAL=$(PORT_HTTP_EXTERNAL); \
-export PORT_HTTP_INTERNAL=$(PORT_HTTP_INTERNAL);
-endef
 
 
 .DEFAULT_GOAL := deploy
@@ -49,18 +40,18 @@ composer composer-install ci composer-update composer-require cr: create_env_fil
 # 🐳 Docker Compose
 start: create_env_file
 	@echo "🚀 Deploy!!!"
-	@$(call EXPORT_ENV_VARS) $(DOCKER_COMPOSE) up -d
+	@$(DOCKER_COMPOSE) up -d
 stop:
 	$(DOCKER_COMPOSE) stop
 down:
 	$(DOCKER_COMPOSE) down
 recreate:
 	@echo "🔥 Recreate container!!!"
-	@$(call EXPORT_ENV_VARS) $(DOCKER_COMPOSE) up -d --build --remove-orphans --force-recreate
+	@$(DOCKER_COMPOSE) up -d --build --remove-orphans --force-recreate
 	make deps
 rebuild:
 	@echo "🔥 Rebuild container!!!"
-	@$(call EXPORT_ENV_VARS) $(DOCKER_COMPOSE) build --pull --force-rm --no-cache
+	@$(DOCKER_COMPOSE) build --pull --force-rm --no-cache
 	make start
 	make deps
 
@@ -73,7 +64,7 @@ test/coverage: create_env_file
 
 # 🦝 Apache
 reload:
-	$(EXEC) /bin/bash service apache2 restart || true
+	@$(EXEC) /bin/bash service apache2 restart || true
 
 # 🧹 Clear cache
 clear:
@@ -86,12 +77,12 @@ bash:
 # 🦊 Linter
 style: lint static-analysis
 lint:
-	$(EXEC) ./vendor/bin/php-cs-fixer fix --diff
+	@$(EXEC) ./vendor/bin/php-cs-fixer fix --diff
 	@echo "Coding Standar Fixer Executed ✅"
 
 lint-diff:
-	$(EXEC)  ./vendor/bin/php-cs-fixer fix --dry-run --diff
+	@$(EXEC)  ./vendor/bin/php-cs-fixer fix --dry-run --diff
 	@echo "Coding Standar Fixer Executed ✅"
 
 static-analysis:
-	$(EXEC)  ./vendor/bin/phpstan analyse -c phpstan.neon.dist
+	@$(EXEC)  ./vendor/bin/phpstan analyse -c phpstan.neon.dist

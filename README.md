@@ -1,11 +1,11 @@
 ![Symfony 6](https://img.shields.io/badge/Symfony-6.4-blueviolet)
-![PHP Version](https://img.shields.io/badge/php-8.2-blue.svg)
+![PHP Version](https://img.shields.io/badge/php-8.3-blue.svg)
 [![CI](https://github.com/sefhirot69/template-symfony/actions/workflows/build.yml/badge.svg)](https://github.com/sefhirot69/template-symfony/actions/workflows/build.yml)
 --------------------------------------
 
 # 🚀 Template Symfony
 
-Este es un template para Symfony 6 en php 8.2, con algunas configuraciones ya predefinidas. Para empezar a desarrollar tu propia
+Este es un template para Symfony 6 en php 8.3, con algunas configuraciones ya predefinidas. Basado en [FrankenPHP](https://frankenphp.dev/). Para empezar a desarrollar tu propia
 API o microservicio.
 
 ## 🛠️ Requisitos
@@ -22,7 +22,7 @@ API o microservicio.
 3. El api está disponible en la url http://localhost:41
    4. Tienes un endpoint para verificar si la aplicación funciona http://localhost:41/api/healthcheck
 
-```Puedes cambiar el puerto de salida 41, en el fichero docker-compose por el que más te guste.```
+```Puedes cambiar el puerto de salida, en el fichero docker-compose por el que más te guste. O definirlo en el .env```
 
 ## 🚀 Comandos Útiles
 
