@@ -9,8 +9,8 @@ use App\Shared\Domain\ValueObject\Timestamps;
 class TimestampsMother
 {
     public static function create(
-        \DateTimeImmutable $createdAt = null,
-        \DateTimeImmutable $updatedAt = null
+        ?\DateTimeImmutable $createdAt = null,
+        ?\DateTimeImmutable $updatedAt = null
     ): Timestamps {
         return Timestamps::create(
             $createdAt ?? (new \DateTimeImmutable(date(\DateTimeInterface::ATOM)))->setTimezone(new \DateTimeZone('UTC')),

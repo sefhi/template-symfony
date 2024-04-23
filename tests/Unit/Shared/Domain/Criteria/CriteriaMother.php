@@ -13,10 +13,10 @@ final class CriteriaMother
 {
     public static function create(
         Filters $filters,
-        Order $order = null,
-        int $pageSize = null,
-        int $pageNumber = null,
-        string $cursor = null
+        ?Order $order = null,
+        ?int $pageSize = null,
+        ?int $pageNumber = null,
+        ?string $cursor = null
     ): Criteria {
         return Criteria::create(
             $filters,

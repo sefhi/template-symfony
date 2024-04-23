@@ -22,12 +22,6 @@ class SymfonyExceptionsHttpStatusCodeMapping
 
     public function statusCodeFor(string $exceptionClass): int
     {
-        $statusCode = $this->exceptions[$exceptionClass] ?? self::DEFAULT_STATUS_CODE;
-
-        if (null === $statusCode) {
-            throw new \InvalidArgumentException("There are no status code mapping for <$exceptionClass>");
-        }
-
-        return $statusCode;
+        return $this->exceptions[$exceptionClass] ?? self::DEFAULT_STATUS_CODE;
     }
 }

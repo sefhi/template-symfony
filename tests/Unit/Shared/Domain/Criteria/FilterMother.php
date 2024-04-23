@@ -12,9 +12,9 @@ use App\Shared\Domain\Criteria\FilterValue;
 final class FilterMother
 {
     public static function create(
-        FilterField $field = null,
-        FilterOperator $operator = null,
-        FilterValue $value = null,
+        ?FilterField $field = null,
+        ?FilterOperator $operator = null,
+        ?FilterValue $value = null,
     ): Filter {
         return Filter::create(
             $field ?? FilterMother::random(),

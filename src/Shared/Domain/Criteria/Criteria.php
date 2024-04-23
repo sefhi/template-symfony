@@ -20,9 +20,9 @@ final readonly class Criteria
     public static function create(
         Filters $filters,
         Order $order,
-        int $pageSize = null,
-        int $pageNumber = null,
-        string $cursor = null
+        ?int $pageSize = null,
+        ?int $pageNumber = null,
+        ?string $cursor = null
     ): self {
         return new self($filters, $order, $pageSize, $pageNumber, $cursor);
     }
@@ -31,9 +31,9 @@ final readonly class Criteria
         array $filters,
         ?string $orderBy,
         ?string $orderType,
-        int $pageSize = null,
-        int $pageNumber = null,
-        string $cursor = null
+        ?int $pageSize = null,
+        ?int $pageNumber = null,
+        ?string $cursor = null
     ): self {
         return new self(
             Filters::fromPrimitives($filters),
