@@ -6,7 +6,7 @@ namespace App\Shared\Domain\ValueObject;
 
 final class Email extends StringValueObject
 {
-    private function __construct(private readonly string $value)
+    protected function __construct(protected string $value)
     {
         $this->ensureIsValidEmail();
     }

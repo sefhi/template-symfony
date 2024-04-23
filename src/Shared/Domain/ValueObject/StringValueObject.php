@@ -6,9 +6,20 @@ namespace App\Shared\Domain\ValueObject;
 
 abstract class StringValueObject
 {
-    abstract public function __toString(): string;
+    protected function __construct(
+        protected string $value
+    ) {
+    }
 
-    abstract public function value(): string;
+    public function __toString(): string
+    {
+        return $this->value;
+    }
+
+    public function value(): string
+    {
+        return $this->value;
+    }
 
     public function isEqualTo(self $other): bool
     {
