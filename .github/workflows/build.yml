@@ -60,6 +60,13 @@ jobs:
         name: Doctrine Schema Validator
         if: false # Remove this line if Doctrine ORM is installed
         run: docker compose exec -T php bin/console -e test doctrine:schema:validate
+
+      -
+        name: Run Linter
+        run: docker compose exec -T php ./vendor/bin/php-cs-fixer fix --dry-run --diff
+
+      - name: Run Analysis Static Code
+        run: docker compose exec -T php ./vendor/bin/phpstan analyse -c phpstan.neon.dist
   lint:
     name: Docker Lint
     runs-on: ubuntu-latest
