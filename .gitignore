@@ -81,3 +81,7 @@
 .phpunit.cache
 coverage.xml
 ###< phpunit/phpunit ###
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###

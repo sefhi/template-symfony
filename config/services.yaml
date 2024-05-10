@@ -35,5 +35,9 @@ services:
             tags:
                 - { name: messenger.message_handler, bus: query.bus }
 
+        App\Shared\Domain\Bus\Event\EventHandler:
+            tags:
+                - { name: messenger.message_handler, bus: event.bus }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

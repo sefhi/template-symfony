@@ -12,6 +12,7 @@ framework:
             command.bus:
             command.sync.bus:
             query.bus:
+            event.bus:
         routing:
             # Route your messages to the transports
             # 'App\Message\YourMessage': async

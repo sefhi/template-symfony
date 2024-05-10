@@ -86,4 +86,32 @@ lint-diff:
 	@echo "Coding Standar Fixer Executed ✅"
 
 static-analysis:
-	@$(EXEC)  ./vendor/bin/phpstan analyse -c phpstan.neon.dist
+	@$(EXEC)  ./vendor/bin/phpstan analyse -c phpstan.dist.neon
+
+rm-database:
+	@docker-compose rm -f database
+
+create-db: create-db/dev create-db/test
+create-db/dev:
+	@$(SYMFONY) doctrine:database:create --env=dev --no-interaction --if-not-exists
+create-db/test:
+	@$(SYMFONY)  doctrine:database:create --env=test --no-interaction --if-not-exists
+
+migrate: migrate/dev migrate/test
+migrate/dev:
+	@$(SYMFONY)  doctrine:migrations:migrate --env=dev
+
+migrate/test:
+	@$(SYMFONY)  doctrine:migrations:migrate --env=test
+
+migration/diff:
+	@$(SYMFONY)  doctrine:migrations:diff
+
+migration/gen:
+	@$(SYMFONY)  doctrine:migrations:generate
+
+drop-db: drop-db/dev  drop-db/test
+drop-db/dev:
+	@$(SYMFONY)  doctrine:database:drop --force --env=dev --if-exists
+drop-db/test:
+	@$(SYMFONY)  doctrine:database:drop --force --env=test --if-exists

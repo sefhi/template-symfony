@@ -60,6 +60,8 @@ RUN set -eux; \
 		xdebug \
 	;
 
+RUN install-php-extensions pdo_pgsql;
+
 COPY --link frankenphp/conf.d/app.dev.ini $PHP_INI_DIR/conf.d/
 
 CMD [ "frankenphp", "run", "--config", "/etc/caddy/Caddyfile", "--watch" ]
