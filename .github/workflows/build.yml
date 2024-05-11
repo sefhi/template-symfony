@@ -50,6 +50,7 @@ jobs:
         run: docker compose exec -T php bin/console -e test doctrine:database:create
       -
         name: Run migrations
+        if: false # Remove this line when the migrations will be configured
         run: docker compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
       -
         name: Run PHPUnit
