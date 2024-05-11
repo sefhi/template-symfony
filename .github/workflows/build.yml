@@ -64,7 +64,7 @@ jobs:
         run: docker compose exec -T php ./vendor/bin/php-cs-fixer fix --dry-run --diff
 
       - name: Run Analysis Static Code
-        run: docker compose exec -T php ./vendor/bin/phpstan analyse -c phpstan.neon.dist
+        run: docker compose exec -T php ./vendor/bin/phpstan analyse -c phpstan.dist.neon
   lint:
     name: Docker Lint
     runs-on: ubuntu-latest
