@@ -13,11 +13,12 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 # Make php extensions it executable
 RUN chmod +x /usr/local/bin/install-php-extensions
 
+# hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	acl \
 	file \
 	gettext \
-	git \
+    git \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN set -eux; \
