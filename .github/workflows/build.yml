@@ -38,29 +38,33 @@ jobs:
       -
         name: Start services
         run: docker compose up --wait --no-build
+
+      -
+        name: Install deps
+        run: docker compose exec -T webserver composer install --no-progress --no-suggest --no-interaction
       -
         name: Check HTTP reachability
-        run: curl -v --fail-with-body http://localhost:81
+        run: curl -v --fail-with-body http://localhost:81/api/health
       -
         name: Create test database
-        run: docker compose exec -T php bin/console -e test doctrine:database:create
+        run: docker compose exec -T webserver bin/console -e test doctrine:database:create
       -
         name: Run migrations
         if: false # Remove this line when the migrations will be configured
-        run: docker compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
+        run: docker compose exec -T webserver bin/console -e test doctrine:migrations:migrate --no-interaction
       -
         name: Run PHPUnit
-        run: docker compose exec -T php ./vendor/bin/phpunit --no-coverage
+        run: docker compose exec -T webserver ./vendor/bin/phpunit --no-coverage
       -
         name: Doctrine Schema Validator
-        run: docker compose exec -T php bin/console -e test doctrine:schema:validate
+        run: docker compose exec -T webserver bin/console -e test doctrine:schema:validate
 
       -
         name: Run Linter
-        run: docker compose exec -T php ./vendor/bin/php-cs-fixer fix --dry-run --diff
+        run: docker compose exec -T webserver ./vendor/bin/php-cs-fixer fix --dry-run --diff
 
       - name: Run Analysis Static Code
-        run: docker compose exec -T php ./vendor/bin/phpstan analyse -c phpstan.dist.neon
+        run: docker compose exec -T webserver ./vendor/bin/phpstan analyse -c phpstan.dist.neon
   lint:
     name: Docker Lint
     runs-on: ubuntu-latest
