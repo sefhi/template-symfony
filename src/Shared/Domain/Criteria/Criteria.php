@@ -27,6 +27,16 @@ final readonly class Criteria
         return new self($filters, $order, $pageSize, $pageNumber, $cursor);
     }
 
+    /**
+     * @param array<array<string,mixed>> $filters
+     * @param string|null                $orderBy
+     * @param string|null                $orderType
+     * @param int|null                   $pageSize
+     * @param int|null                   $pageNumber
+     * @param string|null                $cursor
+     *
+     * @return self
+     */
     public static function fromPrimitives(
         array $filters,
         ?string $orderBy,

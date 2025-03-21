@@ -11,9 +11,6 @@ use App\Shared\Domain\Bus\Query\Query;
 use App\Shared\Domain\Bus\Query\QueryBus;
 use App\Shared\Domain\Bus\Query\QueryResponse;
 use App\Shared\Infrastructure\Exceptions\SymfonyExceptionsHttpStatusCodeMapping;
-
-use function Lambdish\Phunctional\each;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -29,10 +26,10 @@ abstract class BaseController extends AbstractController
         protected readonly SerializerInterface $serializer,
         protected readonly ValidatorInterface $validator,
     ) {
-        each(
-            fn (int $httpCode, string $exceptionClass) => $exceptionMapping->register($exceptionClass, $httpCode),
-            $this->exceptions()
-        );
+        /** @var class-string<\Throwable> $exceptionClass */
+        foreach ($this->exceptions() as $exceptionClass => $httpCode) {
+            $exceptionMapping->register($exceptionClass, $httpCode);
+        }
     }
 
     public function query(Query $query): ?QueryResponse
@@ -77,5 +74,8 @@ abstract class BaseController extends AbstractController
         return $objectDto;
     }
 
+    /**
+     * @return array<class-string<\Throwable>, int>
+     */
     abstract protected function exceptions(): array;
 }

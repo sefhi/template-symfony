@@ -8,8 +8,14 @@ use App\Shared\Domain\Bus\Event\DomainEvent;
 
 class AggregateRoot
 {
+    /**
+     * @var array <DomainEvent>
+     */
     private array $domainEvents = [];
 
+    /**
+     * @return array<DomainEvent>
+     */
     final public function pullDomainEvents(): array
     {
         $domainEvents       = $this->domainEvents;

@@ -6,11 +6,11 @@ namespace App\Health\Application\Query\Response;
 
 use App\Shared\Domain\Bus\Query\QueryResponse;
 
-final class GetHealthQueryResponse implements QueryResponse, \JsonSerializable
+final readonly class GetHealthQueryResponse implements QueryResponse, \JsonSerializable
 {
     private function __construct(
-        private readonly string $status,
-        private readonly string $message,
+        private string $status,
+        private string $message,
     ) {
     }
 
@@ -21,6 +21,9 @@ final class GetHealthQueryResponse implements QueryResponse, \JsonSerializable
         return new self($status, $message);
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function jsonSerialize(): array
     {
         return get_object_vars($this);

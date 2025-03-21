@@ -15,6 +15,10 @@ use Doctrine\Common\Collections\Criteria as DoctrineCriteria;
 
 final readonly class DoctrineCriteriaConverter
 {
+    /**
+     * @param array<string, mixed> $criteriaToDoctrineFields Mapeo de campos de criterio a campos de Doctrine
+     * @param array<string, mixed> $hydrators                Funciones de hidratación para convertir valores
+     */
     public function __construct(
         private Criteria $criteria,
         private array $criteriaToDoctrineFields = [],
@@ -22,6 +26,10 @@ final readonly class DoctrineCriteriaConverter
     ) {
     }
 
+    /**
+     * @param array<string, mixed> $criteriaToDoctrineFields Mapeo de campos de criterio a campos de Doctrine
+     * @param array<string, mixed> $hydrators                Funciones de hidratación para convertir valores
+     */
     public static function convert(
         Criteria $criteria,
         array $criteriaToDoctrineFields = [],

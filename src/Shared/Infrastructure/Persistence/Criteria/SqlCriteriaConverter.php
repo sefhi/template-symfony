@@ -13,6 +13,10 @@ use App\Shared\Domain\Criteria\OrderTypes;
 
 final class SqlCriteriaConverter
 {
+    /**
+     * @param array<string>         $fieldToSelect       Campos a seleccionar en la consulta SQL
+     * @param array<string, string> $criteriaToSqlFields Mapeo de campos de criterio a campos SQL
+     */
     public function convert(
         array $fieldToSelect,
         string $tableName,
@@ -74,6 +78,9 @@ final class SqlCriteriaConverter
         return $query;
     }
 
+    /**
+     * @param array<string, string> $criteriaToSqlFields
+     */
     private function mapFieldValue(FilterField $field, array $criteriaToSqlFields = []): string
     {
         return array_key_exists($field->value(), $criteriaToSqlFields)
@@ -81,6 +88,9 @@ final class SqlCriteriaConverter
             : $field->value();
     }
 
+    /**
+     * @param array<string, string> $criteriaToSqlFields
+     */
     private function mapOrderByValue(OrderBy $by, array $criteriaToSqlFields = []): string
     {
         return array_key_exists($by->value(), $criteriaToSqlFields)

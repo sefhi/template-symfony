@@ -13,6 +13,11 @@ final readonly class Filter
     ) {
     }
 
+    /**
+     * @param array<string, mixed> $values
+     *
+     * @return self
+     */
     public static function fromValues(array $values): self
     {
         return new self(

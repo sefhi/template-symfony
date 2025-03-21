@@ -6,6 +6,9 @@ namespace App\Shared\Domain\Criteria;
 
 use App\Shared\Domain\Utils\Collection;
 
+/**
+ * @extends Collection<Filter>
+ */
 final readonly class Filters extends Collection
 {
     /**
@@ -18,6 +21,11 @@ final readonly class Filters extends Collection
         return new self($filters);
     }
 
+    /**
+     * @param array<array<string,mixed>> $values
+     *
+     * @return self
+     */
     public static function fromValues(array $values): self
     {
         return new self(
@@ -28,6 +36,11 @@ final readonly class Filters extends Collection
         );
     }
 
+    /**
+     * @param array<array<string, mixed>> $primitives
+     *
+     * @return self
+     */
     public static function fromPrimitives(array $primitives): self
     {
         return new self(

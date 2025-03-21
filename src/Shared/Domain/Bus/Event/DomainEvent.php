@@ -6,18 +6,29 @@ namespace App\Shared\Domain\Bus\Event;
 
 use Ramsey\Uuid\Uuid;
 
-abstract class DomainEvent
+abstract readonly class DomainEvent
 {
-    private readonly string $eventId;
-    private readonly string $occurredOn;
+    private string $eventId;
+    private string $occurredOn;
 
-    public function __construct(private readonly string $aggregateId, ?string $eventId = null, ?string $occurredOn = null)
-    {
+    public function __construct(
+        private string $aggregateId,
+        ?string $eventId = null,
+        ?string $occurredOn = null,
+    ) {
         $date             = new \DateTimeImmutable();
         $this->eventId    = $eventId ?: (string) Uuid::uuid7();
         $this->occurredOn = $occurredOn ?: $date->format(\DateTimeInterface::ATOM);
     }
 
+    /**
+     * @param string       $aggregateId
+     * @param array<mixed> $body
+     * @param string       $eventId
+     * @param string       $occurredOn
+     *
+     * @return self
+     */
     abstract public static function fromPrimitives(
         string $aggregateId,
         array $body,
@@ -27,6 +38,9 @@ abstract class DomainEvent
 
     abstract public static function eventName(): string;
 
+    /**
+     * @return array<mixed>
+     */
     abstract public function toPrimitives(): array;
 
     public function aggregateId(): string
