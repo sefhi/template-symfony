@@ -32,10 +32,10 @@ RUN set -eux; \
         pgsql \
 	;
 
-RUN a2enmod rewrite
-
-RUN chown -R www-data:www-data /var/www/html/
-RUN chmod -R u+rwx /var/www/html/
+RUN a2enmod rewrite \
+    chown -R www-data:www-data /var/www/html/ \
+    chmod -R u+rwx /var/www/html/ \
+;
 
 # Expose port
 EXPOSE 80
