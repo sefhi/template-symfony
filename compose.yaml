@@ -3,6 +3,7 @@ services:
     build:
       context: ${PWD}/.docker
       target: base_symfony_dev
+    image: ${IMAGES_PREFIX:-template}-webserver
     env_file:
       - .env
       - .docker/.env
