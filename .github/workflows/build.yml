@@ -29,7 +29,7 @@ jobs:
           pull: true
           load: true
           files: |
-            docker-compose.yaml
+            compose.yaml
             compose.override.yaml
           set: |
             *.cache-from=type=gha,scope=${{github.ref}}
@@ -41,10 +41,6 @@ jobs:
       -
         name: Check HTTP reachability
         run: curl -v --fail-with-body http://localhost:81
-      -
-        name: Check HTTPS reachability
-        if: false # Remove this line when the homepage will be configured, or change the path to check
-        run: curl -vk --fail-with-body https://localhost
       -
         name: Create test database
         run: docker compose exec -T php bin/console -e test doctrine:database:create
