@@ -1,7 +1,7 @@
 # VARIABLES
 ENV_FILE	   = .docker/.env
 DOCKER_COMPOSE = docker compose
-CONTAINER      = php
+CONTAINER      = webserver
 EXEC           = $(DOCKER_COMPOSE) exec -t $(CONTAINER)
 EXEC_PHP       = $(EXEC) php
 SYMFONY        = $(EXEC_PHP) bin/console

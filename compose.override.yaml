@@ -1,9 +1,10 @@
 # Development environment override
 services:
-  php:
+  webserver:
     build:
       context: .docker
       target: base_symfony_dev
+    container_name: 'webserver-${CONTAINER_SUFFIX}'
     volumes:
       - ${PWD}/.docker/webserver/conf.d/php.dev.ini:/usr/local/etc/php/php.ini:ro
     environment:
