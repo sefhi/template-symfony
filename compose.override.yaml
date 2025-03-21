@@ -14,5 +14,5 @@ services:
 ###> doctrine/doctrine-bundle ###
   database:
     ports:
-      - "5432"
+      - "${DB_PORT_EXTERNAL:-5432}:${DB_PORT_INTERNAL:-5432}"
 ###< doctrine/doctrine-bundle ###
