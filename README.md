@@ -5,7 +5,7 @@
 
 # 🚀 Template Symfony
 
-Este es un template para Symfony 6 en php 8.3, con algunas configuraciones ya predefinidas. Basado en [FrankenPHP](https://frankenphp.dev/). Para empezar a desarrollar tu propia
+Este es un template para Symfony 6 en php 8.4, con algunas configuraciones ya predefinidas. Para empezar a desarrollar tu propia
 API o microservicio.
 
 ## 🛠️ Requisitos
@@ -19,8 +19,8 @@ API o microservicio.
 
 1. Clona el repositorio o haz un fork
 2. Escribe por terminal el comando `make`. Este comando instalara todo lo necesario para arrancar la aplicación.
-3. El api está disponible en la url http://localhost:41
-   4. Tienes un endpoint para verificar si la aplicación funciona http://localhost:41/api/healthcheck
+3. El api está disponible en la url http://localhost:81
+   4. Tienes un endpoint para verificar si la aplicación funciona http://localhost:81/api/health
 
 ```Puedes cambiar el puerto de salida, en el fichero docker-compose por el que más te guste. O definirlo en el .env```
 
