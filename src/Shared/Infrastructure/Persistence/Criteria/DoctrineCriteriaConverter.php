@@ -18,7 +18,7 @@ final readonly class DoctrineCriteriaConverter
     public function __construct(
         private Criteria $criteria,
         private array $criteriaToDoctrineFields = [],
-        private array $hydrators = []
+        private array $hydrators = [],
     ) {
     }
 

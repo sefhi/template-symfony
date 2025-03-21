@@ -11,7 +11,7 @@ final readonly class OrderType
     }
 
     public static function create(
-        OrderTypes $orderTypes
+        OrderTypes $orderTypes,
     ): self {
         return new self($orderTypes);
     }

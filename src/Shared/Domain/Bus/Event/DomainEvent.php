@@ -22,7 +22,7 @@ abstract class DomainEvent
         string $aggregateId,
         array $body,
         string $eventId,
-        string $occurredOn
+        string $occurredOn,
     ): self;
 
     abstract public static function eventName(): string;

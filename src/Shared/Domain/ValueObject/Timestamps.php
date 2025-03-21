@@ -8,7 +8,7 @@ final class Timestamps
 {
     private function __construct(
         private readonly \DateTimeImmutable $createdAt,
-        private readonly ?\DateTimeImmutable $updatedAt
+        private readonly ?\DateTimeImmutable $updatedAt,
     ) {
     }
 
@@ -22,7 +22,7 @@ final class Timestamps
 
     public static function create(
         \DateTimeImmutable $createdAt,
-        ?\DateTimeImmutable $updatedAt
+        ?\DateTimeImmutable $updatedAt,
     ): self {
         return new self(
             $createdAt,

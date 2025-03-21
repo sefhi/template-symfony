@@ -16,7 +16,7 @@ final class CriteriaMother
         ?Order $order = null,
         ?int $pageSize = null,
         ?int $pageNumber = null,
-        ?string $cursor = null
+        ?string $cursor = null,
     ): Criteria {
         return Criteria::create(
             $filters,
@@ -43,7 +43,7 @@ final class CriteriaMother
     public static function criteriaPaginated(
         Criteria $criteria,
         int $pageSize,
-        int $pageNumber
+        int $pageNumber,
     ): Criteria {
         return self::create(
             $criteria->getFilters(),
@@ -56,7 +56,7 @@ final class CriteriaMother
     public static function withOneFilter(
         string $field,
         string $operator,
-        string $value
+        string $value,
     ): Criteria {
         return Criteria::fromPrimitives(
             [
@@ -73,7 +73,7 @@ final class CriteriaMother
 
     public static function emptyPaginated(
         int $pageSize,
-        int $pageNumber
+        int $pageNumber,
     ): Criteria {
         return self::create(
             FiltersMother::empty(),

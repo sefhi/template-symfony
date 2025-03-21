@@ -22,7 +22,7 @@ final readonly class Criteria
         Order $order,
         ?int $pageSize = null,
         ?int $pageNumber = null,
-        ?string $cursor = null
+        ?string $cursor = null,
     ): self {
         return new self($filters, $order, $pageSize, $pageNumber, $cursor);
     }
@@ -33,7 +33,7 @@ final readonly class Criteria
         ?string $orderType,
         ?int $pageSize = null,
         ?int $pageNumber = null,
-        ?string $cursor = null
+        ?string $cursor = null,
     ): self {
         return new self(
             Filters::fromPrimitives($filters),

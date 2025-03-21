@@ -9,7 +9,7 @@ final readonly class Filter
     private function __construct(
         private FilterField $field,
         private FilterOperator $operator,
-        private FilterValue $value
+        private FilterValue $value,
     ) {
     }
 
@@ -34,7 +34,7 @@ final readonly class Filter
     public static function create(
         FilterField $field,
         FilterOperator $operator,
-        FilterValue $value
+        FilterValue $value,
     ): self {
         return new self($field, $operator, $value);
     }

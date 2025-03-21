@@ -7,7 +7,7 @@ namespace App\Health\Domain;
 final readonly class Health
 {
     private function __construct(
-        private int $status
+        private int $status,
     ) {
     }
 

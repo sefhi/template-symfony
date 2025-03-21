@@ -17,9 +17,9 @@ final class SqlCriteriaConverter
         array $fieldToSelect,
         string $tableName,
         Criteria $criteria,
-        array $criteriaToSqlFields = []
+        array $criteriaToSqlFields = [],
     ): string {
-        $query = 'SELECT '.implode(', ', $fieldToSelect).' FROM '.$tableName;
+        $query = 'SELECT ' . implode(', ', $fieldToSelect) . ' FROM ' . $tableName;
 
         if ($criteria->hasFilters()) {
             $query .= ' WHERE ';
@@ -59,16 +59,16 @@ final class SqlCriteriaConverter
         if ($criteria->hasOrder()) {
             $order   = $criteria->getOrder();
             $orderBy = $this->mapOrderByValue($order->getOrderBy(), $criteriaToSqlFields);
-            $query .= ' ORDER BY '.$orderBy.' '.$order->getOrderType()->value();
+            $query .= ' ORDER BY ' . $orderBy . ' ' . $order->getOrderType()->value();
         }
 
         if ($criteria->hasPagination()) {
-            $query .= ' LIMIT '.$criteria->getPageSize();
-            $query .= ' OFFSET '.$criteria->getOffset();
+            $query .= ' LIMIT ' . $criteria->getPageSize();
+            $query .= ' OFFSET ' . $criteria->getOffset();
         }
 
         if ($criteria->hasCursorAndPageSize()) {
-            $query .= ' LIMIT '.$criteria->getPageSize();
+            $query .= ' LIMIT ' . $criteria->getPageSize();
         }
 
         return $query;

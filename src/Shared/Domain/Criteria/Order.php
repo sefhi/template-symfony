@@ -8,7 +8,7 @@ final readonly class Order
 {
     private function __construct(
         private OrderBy $orderBy,
-        private OrderType $orderType
+        private OrderType $orderType,
     ) {
     }
 

@@ -247,7 +247,7 @@ class SqlCriteriaConverterTest extends TestCase
 
         // THEN
 
-        self::assertEquals('SELECT id, name FROM table LIMIT '.$limit.' OFFSET '.$offset, $query);
+        self::assertEquals('SELECT id, name FROM table LIMIT ' . $limit . ' OFFSET ' . $offset, $query);
     }
 
     /** @test */
@@ -264,7 +264,7 @@ class SqlCriteriaConverterTest extends TestCase
 
         // THEN
 
-        self::assertEquals("SELECT id, name FROM table WHERE created_at > '2021-01-01 00:00:00' ORDER BY created_at ASC LIMIT ".$pageSize, $query);
+        self::assertEquals("SELECT id, name FROM table WHERE created_at > '2021-01-01 00:00:00' ORDER BY created_at ASC LIMIT " . $pageSize, $query);
     }
 
     /** @test */
@@ -303,6 +303,6 @@ class SqlCriteriaConverterTest extends TestCase
 
         // THEN
 
-        self::assertEquals("SELECT id, name, sons FROM father WHERE name = 'Peter' AND surname LIKE '%Parker%' AND sons < '2' ORDER BY sons DESC LIMIT ".$pageSize, $query);
+        self::assertEquals("SELECT id, name, sons FROM father WHERE name = 'Peter' AND surname LIKE '%Parker%' AND sons < '2' ORDER BY sons DESC LIMIT " . $pageSize, $query);
     }
 }

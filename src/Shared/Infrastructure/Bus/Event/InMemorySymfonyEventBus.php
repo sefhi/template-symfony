@@ -13,7 +13,7 @@ use Symfony\Component\Messenger\Stamp\DispatchAfterCurrentBusStamp;
 final readonly class InMemorySymfonyEventBus implements EventBus
 {
     public function __construct(
-        private MessageBusInterface $eventBus
+        private MessageBusInterface $eventBus,
     ) {
     }
 

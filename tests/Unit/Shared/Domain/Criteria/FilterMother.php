@@ -26,7 +26,7 @@ final class FilterMother
     public static function fromPrimitives(
         string $field,
         string $operator,
-        string $value
+        string $value,
     ): Filter {
         return Filter::fromValues([
             'field'    => $field,
