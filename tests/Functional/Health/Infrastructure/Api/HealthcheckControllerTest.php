@@ -2,6 +2,7 @@
 
 namespace App\Tests\Functional\Health\Infrastructure\Api;
 
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -14,7 +15,7 @@ class HealthcheckControllerTest extends WebTestCase
         $this->client = self::createClient();
     }
 
-    /** @test */
+    #[Test]
     public function itShouldReturnAnOk(): void
     {
         // GIVEN
