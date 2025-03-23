@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit\BookStore\Domain\Entities;
 
+use App\BookStore\Application\Command\CreateBook\CreateBookCommand;
+use App\BookStore\Domain\Entities\Book;
 use Ramsey\Uuid\Uuid;
-use Tests\Unit\BookStore\Application\Command\CreateBookCommand;
 
 final class BookMother
 {
@@ -34,10 +35,11 @@ final class BookMother
     {
         return self::random(
             [
-                'title'  => $command->title(),
-                'author' => $command->author(),
-                'isbn'   => $command->isbn(),
-                'stock'  => $command->stock(),
+                'id'     => $command->id,
+                'title'  => $command->title,
+                'author' => $command->author,
+                'isbn'   => $command->isbn,
+                'stock'  => $command->stock,
             ]
         );
     }

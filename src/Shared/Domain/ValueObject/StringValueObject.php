@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\ValueObject;
 
-abstract class StringValueObject
+abstract readonly class StringValueObject
 {
-    protected function __construct(
+    public function __construct(
         protected string $value,
     ) {
     }
@@ -25,6 +25,4 @@ abstract class StringValueObject
     {
         return $this->value() === $other->value();
     }
-
-    abstract public static function fromString(string $value): self;
 }
