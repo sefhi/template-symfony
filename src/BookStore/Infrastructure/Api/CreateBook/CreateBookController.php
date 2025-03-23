@@ -13,6 +13,8 @@ final class CreateBookController extends BaseController
     public function __invoke(
         #[MapRequestPayload] CreateBookRequest $request,
     ): Response {
+        $this->command($request->mapToCreateBookCommand());
+
         return new Response('', Response::HTTP_CREATED);
     }
 
