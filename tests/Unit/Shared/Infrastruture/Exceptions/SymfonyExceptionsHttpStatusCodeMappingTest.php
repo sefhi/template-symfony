@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Unit\Shared\Infrastruture\Exceptions;
+namespace Tests\Unit\Shared\Infrastruture\Exceptions;
 
 use App\Shared\Infrastructure\Exceptions\SymfonyExceptionsHttpStatusCodeMapping;
 use PHPUnit\Framework\TestCase;

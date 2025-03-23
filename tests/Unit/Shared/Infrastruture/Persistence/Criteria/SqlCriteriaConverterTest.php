@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Tests\Unit\Shared\Infrastruture\Persistence\Criteria;
+namespace Tests\Unit\Shared\Infrastruture\Persistence\Criteria;
 
 use App\Shared\Domain\Criteria\FilterOperator;
 use App\Shared\Domain\Criteria\Filters;
 use App\Shared\Domain\Criteria\OrderTypes;
 use App\Shared\Infrastructure\Persistence\Criteria\SqlCriteriaConverter;
-use App\Tests\Unit\Shared\Domain\Criteria\CriteriaMother;
-use App\Tests\Unit\Shared\Domain\Criteria\FiltersMother;
-use App\Tests\Unit\Shared\Domain\Criteria\OrderMother;
+use Tests\Unit\Shared\Domain\Criteria\CriteriaMother;
+use Tests\Unit\Shared\Domain\Criteria\FiltersMother;
+use Tests\Unit\Shared\Domain\Criteria\OrderMother;
 use PHPUnit\Framework\TestCase;
 
 class SqlCriteriaConverterTest extends TestCase

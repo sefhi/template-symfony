@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Functional\Health\Infrastructure\Api;
+namespace Tests\Functional\Health\Infrastructure\Api;
 
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;

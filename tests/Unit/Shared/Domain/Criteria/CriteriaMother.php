@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Shared\Domain\Criteria;
+namespace Tests\Unit\Shared\Domain\Criteria;
 
 use App\Shared\Domain\Criteria\Criteria;
 use App\Shared\Domain\Criteria\Filters;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Unit\Shared\Infrastruture\Listener;
+namespace Tests\Unit\Shared\Infrastruture\Listener;
 
 use App\Shared\Infrastructure\Exceptions\SymfonyExceptionsHttpStatusCodeMapping;
 use App\Shared\Infrastructure\Listener\SymfonyExceptionListener;
