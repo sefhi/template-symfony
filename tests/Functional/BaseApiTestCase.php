@@ -20,5 +20,4 @@ class BaseApiTestCase extends WebTestCase
     {
         return $this->client;
     }
-
 }

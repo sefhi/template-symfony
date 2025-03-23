@@ -2,3 +2,7 @@ Health:
     prefix: /api/health
     resource: ../src/Health/Infrastructure/Api/routes.yaml
     trailing_slash_on_root: false
+BookStore:
+    prefix: /api/books
+    resource: ../src/BookStore/Infrastructure/Api/routes.yaml
+    trailing_slash_on_root: false

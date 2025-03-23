@@ -78,7 +78,7 @@ bash:
 # 🦊 Linter
 style: lint static-analysis
 lint:
-	@$(EXEC) ./vendor/bin/php-cs-fixer fix --diff
+	@$(EXEC) sh -c "PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix --diff"
 	@echo "Coding Standar Fixer Executed ✅"
 
 lint-diff:

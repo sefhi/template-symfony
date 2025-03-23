@@ -1,0 +1,4 @@
+CreateBook:
+  path: /
+  controller: App\BookStore\Infrastructure\Api\CreateBook\CreateBookController
+  methods: [POST]

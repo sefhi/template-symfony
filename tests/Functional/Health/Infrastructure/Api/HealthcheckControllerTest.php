@@ -3,13 +3,10 @@
 namespace Tests\Functional\Health\Infrastructure\Api;
 
 use PHPUnit\Framework\Attributes\Test;
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Tests\Functional\BaseApiTestCase;
 
 class HealthcheckControllerTest extends BaseApiTestCase
 {
-
     #[Test]
     public function itShouldReturnAnOk(): void
     {

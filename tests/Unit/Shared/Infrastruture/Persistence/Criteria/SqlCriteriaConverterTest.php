@@ -6,10 +6,10 @@ use App\Shared\Domain\Criteria\FilterOperator;
 use App\Shared\Domain\Criteria\Filters;
 use App\Shared\Domain\Criteria\OrderTypes;
 use App\Shared\Infrastructure\Persistence\Criteria\SqlCriteriaConverter;
+use PHPUnit\Framework\TestCase;
 use Tests\Unit\Shared\Domain\Criteria\CriteriaMother;
 use Tests\Unit\Shared\Domain\Criteria\FiltersMother;
 use Tests\Unit\Shared\Domain\Criteria\OrderMother;
-use PHPUnit\Framework\TestCase;
 
 class SqlCriteriaConverterTest extends TestCase
 {
