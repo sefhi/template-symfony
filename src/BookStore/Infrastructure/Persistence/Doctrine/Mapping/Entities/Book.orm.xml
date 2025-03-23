@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\BookStore\Domain\Entities\Book" table="app_books">
+        <id name="id" type="uuid" length="36"/>
+
+        <embedded name="title" class="App\BookStore\Domain\ValueObjects\BookTitle" use-column-prefix="false"/>
+        <embedded name="author" class="App\BookStore\Domain\ValueObjects\BookAuthor" use-column-prefix="false"/>
+        <embedded name="stock" class="App\BookStore\Domain\ValueObjects\BookStock" use-column-prefix="false"/>
+        <embedded name="isbn" class="App\BookStore\Domain\ValueObjects\BookIsbn" use-column-prefix="false"/>
+    </entity>
+
+</doctrine-mapping>

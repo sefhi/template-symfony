@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\BookStore\Domain\Entities;
+namespace App\BookStore\Domain\ValueObjects;
 
 final readonly class BookStock
 {

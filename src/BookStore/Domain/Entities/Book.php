@@ -6,6 +6,7 @@ namespace App\BookStore\Domain\Entities;
 
 use App\BookStore\Domain\ValueObjects\BookAuthor;
 use App\BookStore\Domain\ValueObjects\BookIsbn;
+use App\BookStore\Domain\ValueObjects\BookStock;
 use App\BookStore\Domain\ValueObjects\BookTitle;
 use App\Shared\Domain\Aggregate\AggregateRoot;
 use Ramsey\Uuid\Uuid;
