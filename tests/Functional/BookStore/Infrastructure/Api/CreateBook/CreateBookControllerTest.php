@@ -33,7 +33,7 @@ final class CreateBookControllerTest extends BaseApiTestCase
                 json_encode($payload)
             );
 
-        $response = $this->client()->getResponse();
+        $this->client()->getResponse();
 
         // THEN
 

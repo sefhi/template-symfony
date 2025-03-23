@@ -13,15 +13,13 @@ use Ramsey\Uuid\UuidInterface;
 
 final class Book extends AggregateRoot
 {
-
     private function __construct(
         private UuidInterface $id,
         private BookTitle $title,
         private BookAuthor $author,
         private BookIsbn $isbn,
         private BookStock $stock,
-    )
-    {
+    ) {
     }
 
     public static function create(
@@ -30,8 +28,7 @@ final class Book extends AggregateRoot
         string $author,
         string $isbn,
         int $stock,
-    )
-    {
+    ): self {
         $book = new self(
             Uuid::fromString($id),
             new BookTitle($title),
@@ -40,20 +37,20 @@ final class Book extends AggregateRoot
             new BookStock($stock)
         );
 
-//        $book->record(
-//            new BookCreatedDomainEvent(
-//                $book->id()->toString(),
-//                $book->title()->value(),
-//                $book->author()->value(),
-//                $book->isbn()->value(),
-//                $book->stock()->value()
-//            )
-//        );
+        //        $book->record(
+        //            new BookCreatedDomainEvent(
+        //                $book->id()->toString(),
+        //                $book->title()->value(),
+        //                $book->author()->value(),
+        //                $book->isbn()->value(),
+        //                $book->stock()->value()
+        //            )
+        //        );
 
         return $book;
     }
 
-    public function id(): Uuid
+    public function id(): UuidInterface
     {
         return $this->id;
     }
@@ -77,5 +74,4 @@ final class Book extends AggregateRoot
     {
         return $this->stock;
     }
-
 }

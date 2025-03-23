@@ -8,7 +8,6 @@ use App\Shared\Domain\ValueObject\StringValueObject;
 
 final readonly class BookIsbn extends StringValueObject
 {
-
     public function __construct(string $value)
     {
         parent::__construct($value);
@@ -17,7 +16,7 @@ final readonly class BookIsbn extends StringValueObject
 
     private function ensureIsValidIsbn(string $value): void
     {
-        //TODO implement isbn validation
+        // TODO implement isbn validation
         return;
     }
 }

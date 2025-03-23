@@ -6,6 +6,7 @@ use App\Shared\Domain\Criteria\FilterOperator;
 use App\Shared\Domain\Criteria\Filters;
 use App\Shared\Domain\Criteria\OrderTypes;
 use App\Shared\Infrastructure\Persistence\Criteria\SqlCriteriaConverter;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Tests\Unit\Shared\Domain\Criteria\CriteriaMother;
 use Tests\Unit\Shared\Domain\Criteria\FiltersMother;
@@ -20,7 +21,7 @@ class SqlCriteriaConverterTest extends TestCase
         $this->sqlConverter = new SqlCriteriaConverter();
     }
 
-    /** @test */
+    #[Test]
     public function itShouldConvertToSqlWithoutFilters(): void
     {
         // GIVEN
@@ -38,7 +39,7 @@ class SqlCriteriaConverterTest extends TestCase
         self::assertEquals('SELECT name, surname FROM table', $query);
     }
 
-    /** @test */
+    #[Test]
     public function itShouldConvertToSqlWithOneFilter(): void
     {
         // GIVEN
@@ -58,7 +59,7 @@ class SqlCriteriaConverterTest extends TestCase
         self::assertEquals("SELECT name, surname FROM table WHERE name = 'value'", $query);
     }
 
-    /** @test */
+    #[Test]
     public function itShouldConvertToSqlWithFilters(): void
     {
         // GIVEN
@@ -89,7 +90,7 @@ class SqlCriteriaConverterTest extends TestCase
         self::assertEquals("SELECT name, surname FROM table WHERE name = 'value' AND surname = 'value'", $query);
     }
 
-    /** @test */
+    #[Test]
     public function itShouldConvertToSqlSorted(): void
     {
         // GIVEN
@@ -111,7 +112,7 @@ class SqlCriteriaConverterTest extends TestCase
         self::assertEquals('SELECT name, surname FROM table ORDER BY name ASC', $query);
     }
 
-    /** @test */
+    #[Test]
     public function itShouldConvertToSqlSortedAndFilters(): void
     {
         // GIVEN
@@ -146,7 +147,7 @@ class SqlCriteriaConverterTest extends TestCase
         self::assertEquals("SELECT name, surname FROM table WHERE name = 'value' AND surname = 'value' ORDER BY name ASC", $query);
     }
 
-    /** @test */
+    #[Test]
     public function itShouldConvertToSqlSortedAndFiltersAndFilterContain(): void
     {
         // GIVEN
@@ -181,7 +182,7 @@ class SqlCriteriaConverterTest extends TestCase
         self::assertEquals("SELECT name, surname FROM table WHERE name = 'value' AND surname LIKE '%value%' ORDER BY name ASC", $query);
     }
 
-    /** @test */
+    #[Test]
     public function itShouldConvertToSqlLimitedAndPaginatedWithFilters(): void
     {
         // GIVEN
@@ -225,7 +226,7 @@ class SqlCriteriaConverterTest extends TestCase
         self::assertEquals("SELECT name, surname FROM table WHERE name = 'value' AND surname LIKE '%value%' ORDER BY name ASC LIMIT $limit OFFSET $offset", $query);
     }
 
-    /** @test */
+    #[Test]
     public function itShouldConvertToSqlLimitedAndPaginatedWithoutFilters(): void
     {
         // GIVEN
@@ -250,7 +251,7 @@ class SqlCriteriaConverterTest extends TestCase
         self::assertEquals('SELECT id, name FROM table LIMIT ' . $limit . ' OFFSET ' . $offset, $query);
     }
 
-    /** @test */
+    #[Test]
     public function itShouldConvertToSqlWithOrderTypesAscByCursor(): void
     {
         // GIVEN
@@ -267,7 +268,7 @@ class SqlCriteriaConverterTest extends TestCase
         self::assertEquals("SELECT id, name FROM table WHERE created_at > '2021-01-01 00:00:00' ORDER BY created_at ASC LIMIT " . $pageSize, $query);
     }
 
-    /** @test */
+    #[Test]
     public function itShouldConvertToSqlWithOrderTypesDescByCursor(): void
     {
         // GIVEN

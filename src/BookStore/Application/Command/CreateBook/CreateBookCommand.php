@@ -14,7 +14,6 @@ final readonly class CreateBookCommand implements Command
         public string $author,
         public string $isbn,
         public int $stock,
-    )
-    {
+    ) {
     }
 }

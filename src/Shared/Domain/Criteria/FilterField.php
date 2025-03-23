@@ -6,7 +6,7 @@ namespace App\Shared\Domain\Criteria;
 
 use App\Shared\Domain\ValueObject\StringValueObject;
 
-final class FilterField extends StringValueObject
+final readonly class FilterField extends StringValueObject
 {
     public static function fromString(string $value): self
     {

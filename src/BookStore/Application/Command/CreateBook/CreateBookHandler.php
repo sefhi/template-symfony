@@ -14,8 +14,7 @@ final readonly class CreateBookHandler implements CommandHandler
     public function __construct(
         private BookSaveRepository $repository,
         private EventBus $eventBus,
-    )
-    {
+    ) {
     }
 
     public function __invoke(CreateBookCommand $command): void

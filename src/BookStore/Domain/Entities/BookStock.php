@@ -6,11 +6,9 @@ namespace App\BookStore\Domain\Entities;
 
 final readonly class BookStock
 {
-
     public function __construct(
         private int $value,
-    )
-    {
+    ) {
     }
 
     public function value(): int

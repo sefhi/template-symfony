@@ -28,9 +28,9 @@ final class CreateBookHandlerTest extends TestCase
     {
         // GIVEN
 
-        $command           = CreateBookCommandMother::random();
-        $bookExpected      = BookMother::fromCommand($command);
-//        $bookEventExpected = BookCreatedEventMother::fromBook($bookExpected);
+        $command      = CreateBookCommandMother::random();
+        $bookExpected = BookMother::fromCommand($command);
+        //        $bookEventExpected = BookCreatedEventMother::fromBook($bookExpected);
 
         // WHEN
 
@@ -42,7 +42,7 @@ final class CreateBookHandlerTest extends TestCase
         $this->eventBus
             ->expects(self::once())
             ->method('publish');
-//            ->with($bookEventExpected);
+        //            ->with($bookEventExpected);
 
         $handler = new CreateBookHandler(
             $this->repository,
