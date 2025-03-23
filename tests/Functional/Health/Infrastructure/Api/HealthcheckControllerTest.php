@@ -5,15 +5,10 @@ namespace Tests\Functional\Health\Infrastructure\Api;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Tests\Functional\BaseApiTestCase;
 
-class HealthcheckControllerTest extends WebTestCase
+class HealthcheckControllerTest extends BaseApiTestCase
 {
-    private KernelBrowser $client;
-
-    protected function setUp(): void
-    {
-        $this->client = self::createClient();
-    }
 
     #[Test]
     public function itShouldReturnAnOk(): void
@@ -22,13 +17,13 @@ class HealthcheckControllerTest extends WebTestCase
 
         // WHEN
 
-        $this->client
+        $this->client()
             ->request(
                 'GET',
                 'api/health',
             );
 
-        $response = $this->client->getResponse();
+        $response = $this->client()->getResponse();
 
         // THEN
 
