@@ -10,7 +10,6 @@ use Tests\Utils\MotherCreator;
 
 final class BookMother
 {
-    private array $finalData = [];
     public static function random(array $overrides = []): Book
     {
         $randomData = [

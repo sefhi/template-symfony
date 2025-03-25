@@ -23,11 +23,7 @@ final class MotherCreator
 
     public static function isbn(): string
     {
-        $rand = random_int(1,2);
-
-        $array = [1, 2];
-
-        return $array[$rand] === 1
+        return 0 === random_int(0, 1)
             ? self::random()->isbn10()
             : self::random()->isbn13();
     }
@@ -56,5 +52,4 @@ final class MotherCreator
     {
         return self::random()->uuid();
     }
-
 }
