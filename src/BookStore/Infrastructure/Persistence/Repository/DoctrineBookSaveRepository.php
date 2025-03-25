@@ -12,7 +12,6 @@ final readonly class DoctrineBookSaveRepository extends DoctrineRepository imple
 {
     public function save(Book $book): void
     {
-        // TODO: Implement save() method.
-        return;
+        $this->persist($book);
     }
 }
