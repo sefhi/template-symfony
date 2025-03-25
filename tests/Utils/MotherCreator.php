@@ -30,7 +30,7 @@ final class MotherCreator
 
     public static function title(): string
     {
-        return self::random()->sentence(6);
+        return self::random()->sentence(3);
     }
 
     public static function author(): string
