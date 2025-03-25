@@ -10,13 +10,15 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BaseApiTestCase extends WebTestCase
 {
-    private KernelBrowser $client;
+    private ?KernelBrowser $client;
     private EntityManagerInterface $entityManager;
 
     protected function setUp(): void
     {
-        $this->entityManager = self::getContainer()->get('doctrine.orm.entity_manager');
+        self::ensureKernelShutdown();
+
         $this->client        = self::createClient();
+        $this->entityManager = self::getContainer()->get('doctrine.orm.entity_manager');
 
         $this->entityManager->beginTransaction();
     }
