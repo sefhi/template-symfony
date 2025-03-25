@@ -5,16 +5,18 @@ namespace Integration\BookStore\Infrastructure\Persistence\Repository;
 use App\BookStore\Infrastructure\Persistence\Repository\DoctrineBookFindRepository;
 use App\BookStore\Infrastructure\Persistence\Repository\DoctrineBookSaveRepository;
 use PHPUnit\Framework\Attributes\Test;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Tests\Integration\BaseDoctrineIntegrationTestCase;
 use Tests\Unit\BookStore\Domain\Entities\BookMother;
 
-final class DoctrineBookSaveRepositoryTest extends KernelTestCase
+final class DoctrineBookSaveRepositoryTest extends BaseDoctrineIntegrationTestCase
 {
     private DoctrineBookSaveRepository $repositorySave;
     private DoctrineBookFindRepository $repositoryFind;
 
     protected function setUp(): void
     {
+        parent::setUp();
+
         $entityManager        = self::getContainer()->get('doctrine.orm.entity_manager');
         $this->repositorySave = new DoctrineBookSaveRepository($entityManager);
         $this->repositoryFind = new DoctrineBookFindRepository($entityManager);
