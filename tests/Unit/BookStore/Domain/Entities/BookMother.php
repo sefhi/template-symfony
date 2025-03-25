@@ -6,18 +6,19 @@ namespace Tests\Unit\BookStore\Domain\Entities;
 
 use App\BookStore\Application\Command\CreateBook\CreateBookCommand;
 use App\BookStore\Domain\Entities\Book;
-use Ramsey\Uuid\Uuid;
+use Tests\Utils\MotherCreator;
 
 final class BookMother
 {
+    private array $finalData = [];
     public static function random(array $overrides = []): Book
     {
         $randomData = [
-            'id'     => Uuid::uuid7()->toString(),
-            'title'  => 'The Lord of the Rings',
-            'author' => 'J.R.R. Tolkien',
-            'isbn'   => '978-0544003415',
-            'stock'  => rand(0, 100),
+            'id'     => MotherCreator::id(),
+            'title'  => MotherCreator::title(),
+            'author' => MotherCreator::author(),
+            'isbn'   => MotherCreator::isbn(),
+            'stock'  => MotherCreator::stock(),
         ];
 
         $finalData = array_merge($randomData, $overrides);

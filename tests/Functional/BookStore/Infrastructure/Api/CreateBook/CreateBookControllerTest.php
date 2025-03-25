@@ -6,6 +6,7 @@ namespace Tests\Functional\BookStore\Infrastructure\Api\CreateBook;
 
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Functional\BaseApiTestCase;
+use Tests\Utils\MotherCreator;
 
 final class CreateBookControllerTest extends BaseApiTestCase
 {
@@ -15,10 +16,10 @@ final class CreateBookControllerTest extends BaseApiTestCase
         // GIVEN
 
         $payload = [
-            'title'  => 'The Lord of the Rings',
-            'author' => 'J.R.R. Tolkien',
-            'isbn'   => '978-0544003415',
-            'stock'  => 1,
+            'title'  => MotherCreator::title(),
+            'author' => MotherCreator::author(),
+            'isbn'   => MotherCreator::isbn(),
+            'stock'  => MotherCreator::stock(),
         ];
 
         // WHEN
