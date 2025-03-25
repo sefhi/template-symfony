@@ -12,7 +12,7 @@ CURRENT_UID  := $(shell id -u)
 
 .DEFAULT_GOAL := deploy
 
-.PHONY: deploy build deps update-deps composer-install ci composer-update cu composer-require cr composer start stop down recreate rebuild test reload clear bash style lint lint-diff static-analysis
+.PHONY: deploy build deps update-deps composer-install ci composer-update cu composer-require cr composer start stop down recreate rebuild test reload clear bash style lint lint-diff static-analysis schema-validate create-db create-db/dev create-db/test migrate migrate/dev migrate/test drop-db drop-db/dev drop-db/test migration/diff migration/gen rm-database
 
 deploy: build
 	@echo "📦 Build done"
@@ -58,10 +58,10 @@ rebuild:
 
 # 🧪 Tests
 test: create_env_file
-	$(EXEC)  ./vendor/bin/phpunit --no-coverage
+	 $(EXEC) sh -c "APP_ENV=test ./vendor/bin/phpunit -c phpunit.xml.dist --no-coverage --order-by=random"
 
 test/coverage: create_env_file
-	$(EXEC)  ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml --order-by=random
+	$(EXEC)  sh -c "APP_ENV=test ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml --order-by=random"
 
 # 🦝 Apache
 reload:
@@ -115,3 +115,8 @@ drop-db/dev:
 	@$(SYMFONY)  doctrine:database:drop --force --env=dev --if-exists
 drop-db/test:
 	@$(SYMFONY)  doctrine:database:drop --force --env=test --if-exists
+schema-validate: schema-validate/dev schema-validate/test
+schema-validate/dev:
+	@$(SYMFONY)  doctrine:schema:validate
+schema-validate/test:
+	@$(SYMFONY)  doctrine:schema:validate --env=test
