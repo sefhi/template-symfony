@@ -99,7 +99,7 @@ final readonly class Criteria
         return $this->pageNumber;
     }
 
-    public function getOffset(): ?int
+    public function getOffset(): int
     {
         $this->ensurePageSizeIsRequiredWhenPageNumberIsDefined();
 

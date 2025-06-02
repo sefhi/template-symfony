@@ -127,16 +127,21 @@ final readonly class DoctrineCriteriaConverter
                         )
                     )
                 );
-            } elseif ($filter->operator()->equalsTo(FilterOperator::GT)
-                || $filter->operator()->equalsTo(FilterOperator::GTE)
-                || $filter->operator()->equalsTo(FilterOperator::LT)
-                || $filter->operator()->equalsTo(FilterOperator::LTE)) {
-                $operator = strtolower($filter->operator()->name);
+            } elseif ($filter->operator()->equalsTo(FilterOperator::GT)) {
                 $doctrineCriteria->andWhere(
-                    $expression->$operator(
-                        $field,
-                        $value
-                    )
+                    $expression->gt($field, $value)
+                );
+            } elseif ($filter->operator()->equalsTo(FilterOperator::GTE)) {
+                $doctrineCriteria->andWhere(
+                    $expression->gte($field, $value)
+                );
+            } elseif ($filter->operator()->equalsTo(FilterOperator::LT)) {
+                $doctrineCriteria->andWhere(
+                    $expression->lt($field, $value)
+                );
+            } elseif ($filter->operator()->equalsTo(FilterOperator::LTE)) {
+                $doctrineCriteria->andWhere(
+                    $expression->lte($field, $value)
                 );
             } elseif ($filter->operator()->equalsTo(FilterOperator::STARTS_WITH)) {
                 $doctrineCriteria->andWhere(
