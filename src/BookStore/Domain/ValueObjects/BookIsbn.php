@@ -16,7 +16,8 @@ final readonly class BookIsbn extends StringValueObject
 
     private function ensureIsValidIsbn(string $value): void
     {
-        // TODO implement isbn validation
-        return;
+        if (strlen($value) <= 0) {
+            throw new \InvalidArgumentException('Invalid isbn');
+        }
     }
 }
