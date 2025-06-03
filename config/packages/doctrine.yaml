@@ -24,12 +24,18 @@ doctrine:
                 dir: '%kernel.project_dir%/src/BookStore/Infrastructure/Persistence/Doctrine/Mapping/Entities'
                 prefix: 'App\BookStore\Domain\Entities'
                 alias: BookStore
-            ValueObjects_BookStore:
+            BookStore_ValueObjects:
                 type: xml
                 is_bundle: false
                 dir: '%kernel.project_dir%/src/BookStore/Infrastructure/Persistence/Doctrine/Mapping/ValueObjects'
                 prefix: 'App\BookStore\Domain\ValueObjects'
                 alias: BookStoreValueObjects
+            Shared_ValueObjects:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Shared/Infrastructure/Persistence/Doctrine/Mapping/ValueObjects'
+                prefix: 'App\Shared\Domain\ValueObjects'
+                alias: SharedValueObjects
         controller_resolver:
             auto_mapping: false
 
