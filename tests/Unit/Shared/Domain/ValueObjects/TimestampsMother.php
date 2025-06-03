@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Shared\Domain\ValueObject;
+namespace Tests\Unit\Shared\Domain\ValueObjects;
 
-use App\Shared\Domain\ValueObject\Timestamps;
+use App\Shared\Domain\ValueObjects\Timestamps;
 
 class TimestampsMother
 {
