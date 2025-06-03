@@ -4,8 +4,8 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <embeddable name="App\Shared\Domain\ValueObject\Email">
-        <field name="email" length="120" />
+    <embeddable name="App\Shared\Domain\ValueObjects\Email">
+        <field name="value" length="120" />
     </embeddable>
 
 </doctrine-mapping>

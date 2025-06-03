@@ -4,9 +4,10 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <embeddable name="App\Shared\Domain\ValueObject\Timestamps">
+    <embeddable name="App\Shared\Domain\ValueObjects\Timestamps">
         <field name="createdAt" type="datetime_immutable" column="created_at" />
         <field name="updatedAt" type="datetime_immutable" column="updated_at" nullable="true" />
+        <field name="deletedAt" type="datetime_immutable" column="deleted_at" nullable="true" />
     </embeddable>
 
 </doctrine-mapping>

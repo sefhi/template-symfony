@@ -10,7 +10,7 @@
         <embedded name="name" class="App\Sesame\User\Domain\ValueObjects\UserName" use-column-prefix="false"/>
         <embedded name="email" class="App\Shared\Domain\ValueObjects\Email" use-column-prefix="false"/>
         <embedded name="password" class="App\Sesame\User\Domain\ValueObjects\UserPassword" use-column-prefix="false"/>
-        <embedded name="timestamp" class="App\Shared\Domain\ValueObjects\Timestamps" use-column-prefix="false"/>
+        <embedded name="timestamps" class="App\Shared\Domain\ValueObjects\Timestamps" use-column-prefix="false"/>
     </entity>
 
 </doctrine-mapping>
