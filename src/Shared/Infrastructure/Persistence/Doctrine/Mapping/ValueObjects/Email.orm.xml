@@ -5,7 +5,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <embeddable name="App\Shared\Domain\ValueObjects\Email">
-        <field name="value" type="datetime_immutable" column="email" />
+        <field name="value" length="150" column="email" />
     </embeddable>
 
 </doctrine-mapping>
