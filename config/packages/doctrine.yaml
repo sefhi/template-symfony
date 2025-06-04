@@ -48,6 +48,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Shared/Infrastructure/Persistence/Doctrine/Mapping/ValueObjects'
                 prefix: 'App\Shared\Domain\ValueObjects'
                 alias: SharedValueObjects
+            WorkEntry:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Sesame/WorkEntry/Infrastructure/Persistence/Doctrine/Mapping/Entities'
+                prefix: 'App\Sesame\WorkEntry\Domain\Entities'
+                alias: WorkEntry
         controller_resolver:
             auto_mapping: false
 

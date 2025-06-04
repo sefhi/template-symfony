@@ -20,18 +20,16 @@ final class User extends AggregateRoot
         private Email $email,
         private UserPassword $password,
         private Timestamps $timestamps,
-    )
-    {
+    ) {
     }
-    
+
     public static function create(
         string $id,
         string $name,
         string $email,
         string $password,
         \DateTimeImmutable $createdAt,
-    ) : self {
-
+    ): self {
         return new self(
             Uuid::fromString($id),
             new UserName($name),
@@ -69,5 +67,4 @@ final class User extends AggregateRoot
     {
         return $this->timestamps;
     }
-
 }

@@ -8,5 +8,4 @@ use App\Shared\Domain\ValueObjects\StringValueObject;
 
 final readonly class UserName extends StringValueObject
 {
-
 }
