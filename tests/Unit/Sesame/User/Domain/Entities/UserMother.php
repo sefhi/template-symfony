@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Sesame\User\Domain\Entities;
 
+use App\Sesame\User\Application\Commands\CreateUser\CreateUserCommand;
 use App\Sesame\User\Domain\Entities\User;
 use Tests\Utils\MotherCreator;
 
@@ -54,6 +55,19 @@ final class UserMother
             email: $finalData['email'],
             password: $finalData['password'],
             createdAt: $finalData['createdAt'],
+        );
+    }
+
+    public static function fromCreateUserCommand(CreateUserCommand $command): User
+    {
+        return self::create(
+            [
+                'id'        => $command->id,
+                'name'      => $command->name,
+                'email'     => $command->email,
+                'password'  => $command->password,
+                'createdAt' => $command->createdAt,
+            ]
         );
     }
 }
