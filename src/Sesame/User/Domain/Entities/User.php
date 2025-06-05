@@ -23,6 +23,28 @@ final class User extends AggregateRoot
     ) {
     }
 
+    public static function make(
+        string $id,
+        string $name,
+        string $email,
+        string $password,
+        \DateTimeImmutable $createdAt,
+        ?\DateTimeImmutable $updatedAt = null,
+        ?\DateTimeImmutable $deletedAt = null,
+    ): self {
+        return new self(
+            Uuid::fromString($id),
+            new UserName($name),
+            new Email($email),
+            new UserPassword($password),
+            Timestamps::create(
+                $createdAt,
+                $updatedAt,
+                $deletedAt,
+            )
+        );
+    }
+
     public static function create(
         string $id,
         string $name,

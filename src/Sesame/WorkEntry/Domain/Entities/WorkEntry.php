@@ -20,7 +20,29 @@ final class WorkEntry extends AggregateRoot
     ) {
     }
 
-    public static function create(
+    public static function make(
+        string $id,
+        string $userId,
+        \DateTimeImmutable $startDate,
+        \DateTimeImmutable $createdAt,
+        ?\DateTimeImmutable $endDate = null,
+        ?\DateTimeImmutable $updatedAt = null,
+        ?\DateTimeImmutable $deletedAt = null,
+    ): self {
+        return new self(
+            Uuid::fromString($id),
+            Uuid::fromString($userId),
+            $startDate,
+            $endDate,
+            Timestamps::create(
+                $createdAt,
+                $updatedAt,
+                $deletedAt,
+            )
+        );
+    }
+
+    public static function start(
         string $id,
         string $userId,
         \DateTimeImmutable $startDate,

@@ -52,4 +52,24 @@ final class MotherCreator
     {
         return self::random()->uuid();
     }
+
+    public static function email(): string
+    {
+        return self::random()->email();
+    }
+
+    public static function name(): string
+    {
+        return self::random()->name();
+    }
+
+    public static function password(): string
+    {
+        return self::random()->password();
+    }
+
+    public static function dateTime(): \DateTimeImmutable
+    {
+        return \DateTimeImmutable::createFromMutable(self::random()->dateTime());
+    }
 }
