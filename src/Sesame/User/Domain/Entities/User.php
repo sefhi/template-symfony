@@ -14,6 +14,8 @@ use Ramsey\Uuid\UuidInterface;
 
 final class User extends AggregateRoot
 {
+    private bool $isPasswordHashed = false;
+
     private function __construct(
         private UuidInterface $id,
         private UserName $name,
@@ -65,6 +67,21 @@ final class User extends AggregateRoot
         );
     }
 
+    public function withPasswordHashed(string $password): self
+    {
+        $user = new self(
+            $this->id,
+            $this->name,
+            $this->email,
+            new UserPassword($password),
+            $this->timestamps,
+        );
+
+        $user->isPasswordHashed = true;
+
+        return $user;
+    }
+
     public function id(): UuidInterface
     {
         return $this->id;
@@ -73,6 +90,16 @@ final class User extends AggregateRoot
     public function name(): UserName
     {
         return $this->name;
+    }
+
+    public function nameValue(): string
+    {
+        return $this->name->value();
+    }
+
+    public function emailValue(): string
+    {
+        return $this->email->value();
     }
 
     public function email(): Email
@@ -88,5 +115,51 @@ final class User extends AggregateRoot
     public function timestamps(): Timestamps
     {
         return $this->timestamps;
+    }
+
+    public function createdAt(): \DateTimeImmutable
+    {
+        return $this->timestamps->createdAt();
+    }
+
+    public function updatedAt(): ?\DateTimeImmutable
+    {
+        return $this->timestamps->updatedAt();
+    }
+
+    public function update(
+        string $name,
+        string $email,
+        \DateTimeImmutable $createdAt,
+        ?\DateTimeImmutable $updatedAt,
+        ?\DateTimeImmutable $deletedAt,
+    ): void {
+        $this->name       = new UserName($name);
+        $this->email      = new Email($email);
+        $this->timestamps = Timestamps::create(
+            $createdAt,
+            $updatedAt,
+            $deletedAt,
+        );
+    }
+
+    public function deletedAt(): ?\DateTimeImmutable
+    {
+        return $this->timestamps->deletedAt();
+    }
+
+    public function delete(): void
+    {
+        $this->timestamps = $this->timestamps->delete();
+    }
+
+    public function isPasswordHashed(): bool
+    {
+        return $this->isPasswordHashed;
+    }
+
+    public function passwordValue(): string
+    {
+        return $this->password->value();
     }
 }

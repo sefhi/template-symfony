@@ -16,6 +16,7 @@ class SymfonyExceptionsHttpStatusCodeMapping
      */
     private array $exceptions = [
         \InvalidArgumentException::class => Response::HTTP_BAD_REQUEST,
+        \DomainException::class          => Response::HTTP_BAD_REQUEST,
         NotFoundHttpException::class     => Response::HTTP_NOT_FOUND,
     ];
 

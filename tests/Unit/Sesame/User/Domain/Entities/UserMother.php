@@ -6,7 +6,7 @@ namespace Tests\Unit\Sesame\User\Domain\Entities;
 
 use App\Sesame\User\Application\Commands\CreateUser\CreateUserCommand;
 use App\Sesame\User\Domain\Entities\User;
-use Tests\Utils\MotherCreator;
+use Tests\Utils\Mother\MotherCreator;
 
 final class UserMother
 {
@@ -22,6 +22,7 @@ final class UserMother
             'password'  => MotherCreator::password(),
             'createdAt' => $createdAt,
             'updatedAt' => $updatedAt,
+            'deletedAt' => null,
         ];
 
         $finalData = array_merge($randomData, $overrides);
@@ -33,6 +34,7 @@ final class UserMother
             password: $finalData['password'],
             createdAt: $finalData['createdAt'],
             updatedAt: $finalData['updatedAt'],
+            deletedAt: $finalData['deletedAt'],
         );
     }
 
@@ -58,6 +60,17 @@ final class UserMother
         );
     }
 
+    public static function admin(): User
+    {
+        return self::create(
+            [
+                'name'     => 'admin',
+                'email'    => 'admin@app.es',
+                'password' => 't@hi$si_smypAs5w0rD',
+            ]
+        );
+    }
+
     public static function fromCreateUserCommand(CreateUserCommand $command): User
     {
         return self::create(
@@ -65,7 +78,7 @@ final class UserMother
                 'id'        => $command->id,
                 'name'      => $command->name,
                 'email'     => $command->email,
-                'password'  => $command->password,
+                'password'  => $command->plainPassword,
                 'createdAt' => $command->createdAt,
             ]
         );

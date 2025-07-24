@@ -12,6 +12,7 @@ use App\Shared\Domain\Criteria\Order;
 use App\Shared\Domain\Criteria\OrderBy;
 use App\Shared\Domain\Criteria\OrderTypes;
 use Doctrine\Common\Collections\Criteria as DoctrineCriteria;
+use Doctrine\Common\Collections\Order as DoctrineOrder;
 
 final readonly class DoctrineCriteriaConverter
 {
@@ -163,8 +164,9 @@ final readonly class DoctrineCriteriaConverter
         /** @var Order $order */
         foreach ($orders as $order) {
             if (!$order->isNone()) {
-                $by = $this->mapOrderByValue($order->getOrderBy());
-                $doctrineCriteria->orderBy([$by => $order->getOrderType()->value()]);
+                $by            = $this->mapOrderByValue($order->getOrderBy());
+                $doctrineOrder = $this->convertToDoctrineOrder($order->orderTypes());
+                $doctrineCriteria->orderBy([$by => $doctrineOrder]);
             }
         }
     }
@@ -207,5 +209,14 @@ final readonly class DoctrineCriteriaConverter
         if ($this->criteria->hasCursorAndPageSize()) {
             $doctrineCriteria->setMaxResults($this->criteria->getPageSize());
         }
+    }
+
+    private function convertToDoctrineOrder(OrderTypes $orderType): DoctrineOrder
+    {
+        return match ($orderType) {
+            OrderTypes::ASC  => DoctrineOrder::Ascending,
+            OrderTypes::DESC => DoctrineOrder::Descending,
+            default          => DoctrineOrder::Ascending,
+        };
     }
 }

@@ -57,4 +57,9 @@ final readonly class Timestamps
     {
         return $this->deletedAt;
     }
+
+    public function isDeleted(): bool
+    {
+        return false === is_null($this->deletedAt);
+    }
 }

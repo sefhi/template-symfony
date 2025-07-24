@@ -49,6 +49,11 @@ final readonly class Order
         return $this->orderType;
     }
 
+    public function orderTypes(): OrderTypes
+    {
+        return $this->orderType->getOrderTypes();
+    }
+
     public function isNone(): bool
     {
         return $this->getOrderType()->isNone();

@@ -8,12 +8,13 @@ use App\Shared\Infrastructure\Exceptions\SymfonyExceptionsHttpStatusCodeMapping;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
 
-class SymfonyExceptionListener
+readonly class SymfonyExceptionListener
 {
-    public function __construct(private readonly SymfonyExceptionsHttpStatusCodeMapping $exceptionMapping)
+    public function __construct(private SymfonyExceptionsHttpStatusCodeMapping $exceptionMapping)
     {
     }
 
@@ -30,6 +31,11 @@ class SymfonyExceptionListener
             foreach (iterator_to_array($exception->getViolations()) as $violation) {
                 $body['errors'] = [$violation->getPropertyPath() => $violation->getMessageTemplate()];
             }
+        }
+
+        if ($exception instanceof UnprocessableEntityHttpException) {
+            $body['errors'] = $this->parseErrorMessage($exception->getMessage());
+            unset($body['message']);
         }
 
         // Exception on buses
@@ -53,5 +59,42 @@ class SymfonyExceptionListener
                 $statusCodeFor
             )
         );
+    }
+
+    /**
+     * @param string $errorMessage
+     *
+     * @return array<array<string, string>>
+     */
+    private function parseErrorMessage(string $errorMessage): array
+    {
+        $lines = array_filter(
+            explode("\n", $errorMessage),
+            fn ($error) => !empty(trim($error))
+        );
+
+        $errors = [];
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+
+            if (preg_match('/<(\w+)>/', $line, $matches)) {
+                $field   = $matches[1];
+                $message = 'The ' . preg_replace('/<(\w+)>/', $matches[1], $line);
+            } elseif (preg_match('/^(\w+)\s+/', $line, $matches)) {
+                $field   = $matches[1];
+                $message = 'The ' . $line;
+            } else {
+                $field   = 'unknown';
+                $message = $line;
+            }
+
+            $errors[] = [
+                'field'   => $field,
+                'message' => $message,
+            ];
+        }
+
+        return $errors;
     }
 }

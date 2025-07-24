@@ -14,7 +14,7 @@ final class WorkEntry extends AggregateRoot
     private function __construct(
         private UuidInterface $id,
         private UuidInterface $userId,
-        private \DateTimeImmutable $startDate,
+        private ?\DateTimeImmutable $startDate,
         private ?\DateTimeImmutable $endDate,
         private Timestamps $timestamps,
     ) {
@@ -23,8 +23,8 @@ final class WorkEntry extends AggregateRoot
     public static function make(
         string $id,
         string $userId,
-        \DateTimeImmutable $startDate,
         \DateTimeImmutable $createdAt,
+        ?\DateTimeImmutable $startDate = null,
         ?\DateTimeImmutable $endDate = null,
         ?\DateTimeImmutable $updatedAt = null,
         ?\DateTimeImmutable $deletedAt = null,
@@ -42,10 +42,10 @@ final class WorkEntry extends AggregateRoot
         );
     }
 
-    public static function start(
+    public static function create(
         string $id,
         string $userId,
-        \DateTimeImmutable $startDate,
+        ?\DateTimeImmutable $startDate,
         \DateTimeImmutable $createdAt,
     ): self {
         return new self(
@@ -67,7 +67,7 @@ final class WorkEntry extends AggregateRoot
         return $this->userId;
     }
 
-    public function startDate(): \DateTimeImmutable
+    public function startDate(): ?\DateTimeImmutable
     {
         return $this->startDate;
     }
@@ -80,5 +80,63 @@ final class WorkEntry extends AggregateRoot
     public function timestamps(): Timestamps
     {
         return $this->timestamps;
+    }
+
+    public function update(
+        string $userId,
+        \DateTimeImmutable $startDate,
+        \DateTimeImmutable $createdAt,
+        \DateTimeImmutable $updatedAt,
+        ?\DateTimeImmutable $endDate,
+        ?\DateTimeImmutable $deletedAt,
+    ): void {
+        $this->userId     = Uuid::fromString($userId);
+        $this->startDate  = $startDate;
+        $this->endDate    = $endDate;
+        $this->timestamps = Timestamps::create(
+            $createdAt,
+            $updatedAt,
+            $deletedAt,
+        );
+    }
+
+    public function isDeleted(): bool
+    {
+        return $this->timestamps->isDeleted();
+    }
+
+    public function delete(): void
+    {
+        $this->timestamps = $this->timestamps->delete();
+    }
+
+    public function createdAt(): \DateTimeImmutable
+    {
+        return $this->timestamps->createdAt();
+    }
+
+    public function updatedAt(): ?\DateTimeImmutable
+    {
+        return $this->timestamps->updatedAt();
+    }
+
+    public function isClockedIn(): bool
+    {
+        return null !== $this->startDate;
+    }
+
+    public function clockIn(?\DateTimeImmutable $startDate): void
+    {
+        $this->startDate = $startDate ?? new \DateTimeImmutable();
+    }
+
+    public function isClockedOut(): bool
+    {
+        return null !== $this->endDate && null !== $this->startDate;
+    }
+
+    public function clockOut(?\DateTimeImmutable $endDate): void
+    {
+        $this->endDate = $endDate ?? new \DateTimeImmutable();
     }
 }

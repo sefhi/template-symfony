@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\Utils;
 
-use IteratorAggregate;
-
 /**
  * @template T
  *
- * @implements IteratorAggregate<int, T>
+ * @implements \IteratorAggregate<int, T>
  */
 abstract readonly class Collection implements \Countable, \IteratorAggregate
 {

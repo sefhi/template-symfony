@@ -7,6 +7,9 @@ namespace Tests\Utils;
 use Faker\Factory;
 use Faker\Generator;
 
+/**
+ * @deprecated use Tests\Utils\Mother\MotherCreator
+ */
 final class MotherCreator
 {
     private static ?Generator $faker = null;

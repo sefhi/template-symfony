@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Tests\Unit\Sesame\User\Application\Commands\CreateUser;
 
 use App\Sesame\User\Application\Commands\CreateUser\CreateUserHandler;
-use App\Sesame\User\Domain\Repositories\UserRepository;
+use App\Sesame\User\Domain\Repositories\UserSaveRepository;
+use App\Sesame\User\Domain\Security\PasswordHasher;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -13,12 +14,19 @@ use Tests\Unit\Sesame\User\Domain\Entities\UserMother;
 
 final class CreateUserHandlerTest extends TestCase
 {
-    private UserRepository|MockObject $userRepository;
+    private UserSaveRepository|MockObject $userRepository;
+    private PasswordHasher|MockObject $passwordHasher;
+    private CreateUserHandler $handler;
 
     protected function setUp(): void
     {
-        $this->userRepository = $this->createMock(UserRepository::class);
-        // TODO service password hasher
+        $this->userRepository = $this->createMock(UserSaveRepository::class);
+        $this->passwordHasher = $this->createMock(PasswordHasher::class);
+
+        $this->handler = new CreateUserHandler(
+            $this->userRepository,
+            $this->passwordHasher,
+        );
     }
 
     #[Test]
@@ -26,22 +34,27 @@ final class CreateUserHandlerTest extends TestCase
     {
         // GIVEN
 
-        $command      = CreateUserCommandMother::random();
-        $userExpected = UserMother::fromCreateUserCommand($command);
+        $command          = CreateUserCommandMother::random();
+        $userExpected     = UserMother::fromCreateUserCommand($command);
+        $passwordExpected = 'passwordhashed';
 
         // WHEN
+
+        $this->passwordHasher
+            ->expects(self::once())
+            ->method('hashPlainPassword')
+            ->with($userExpected, $command->plainPassword)
+            ->willReturn($passwordExpected);
+
+        $userExpected = $userExpected->withPasswordHashed($passwordExpected);
 
         $this->userRepository
             ->expects(self::once())
             ->method('save')
             ->with($userExpected);
 
-        $handler = new CreateUserHandler(
-            $this->userRepository,
-        );
-
         // THEN
 
-        $handler($command);
+        ($this->handler)($command);
     }
 }

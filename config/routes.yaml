@@ -6,3 +6,18 @@ BookStore:
     prefix: /api/books
     resource: ../src/BookStore/Infrastructure/Api/routes.yaml
     trailing_slash_on_root: false
+ApiLogin:
+    path: /api/login
+    methods: [POST]
+Users:
+    prefix: /api/users
+    resource: ../src/Sesame/User/Infrastructure/Api/routes.yaml
+    trailing_slash_on_root: false
+WorkEntries:
+    prefix: /api/work-entries
+    resource: ../src/Sesame/WorkEntry/Infrastructure/Api/routes.yaml
+    trailing_slash_on_root: false
+TimeTracking:
+    prefix: /api/work-entries
+    resource: ../src/Sesame/TimeTracking/Infrastructure/Api/routes.yaml
+    trailing_slash_on_root: false

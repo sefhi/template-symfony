@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Sesame\User\Application\Commands\CreateUser;
 
 use App\Sesame\User\Application\Commands\CreateUser\CreateUserCommand;
-use Tests\Utils\MotherCreator;
+use Tests\Utils\Mother\MotherCreator;
 
 final class CreateUserCommandMother
 {
@@ -27,7 +27,7 @@ final class CreateUserCommandMother
             id: $finalData['id'],
             name: $finalData['name'],
             email: $finalData['email'],
-            password: $finalData['password'],
+            plainPassword: $finalData['password'],
             createdAt: $finalData['createdAt'],
         );
     }

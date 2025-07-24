@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace App\Sesame\User\Application\Commands\CreateUser;
 
 use App\Sesame\User\Domain\Entities\User;
-use App\Sesame\User\Domain\Repositories\UserRepository;
+use App\Sesame\User\Domain\Repositories\UserSaveRepository;
+use App\Sesame\User\Domain\Security\PasswordHasher;
 use App\Shared\Domain\Bus\Command\CommandHandler;
 
 final readonly class CreateUserHandler implements CommandHandler
 {
     public function __construct(
-        private UserRepository $userRepository,
-        // TODO service password hasher
+        private UserSaveRepository $userRepository,
+        private PasswordHasher $passwordHasher,
     ) {
     }
 
@@ -22,10 +23,12 @@ final readonly class CreateUserHandler implements CommandHandler
             $command->id,
             $command->name,
             $command->email,
-            $command->password,
+            $command->plainPassword,
             $command->createdAt,
         );
 
-        $this->userRepository->save($user);
+        $hashedPassword = $this->passwordHasher->hashPlainPassword($user, $command->plainPassword);
+
+        $this->userRepository->save($user->withPasswordHashed($hashedPassword));
     }
 }

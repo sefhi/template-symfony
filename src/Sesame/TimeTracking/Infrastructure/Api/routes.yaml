@@ -1,0 +1,9 @@
+TimeTrackingClockIn:
+  path: /{id}/clock-in
+  methods: [PATCH]
+  controller: App\Sesame\TimeTracking\Infrastructure\Api\ClockIn\ClockInController
+
+TimeTrackingClockOut:
+  path: /{id}/clock-out
+  methods: [PATCH]
+  controller: App\Sesame\TimeTracking\Infrastructure\Api\ClockOut\ClockOutController

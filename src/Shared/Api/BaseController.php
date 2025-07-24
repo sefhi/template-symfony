@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Api;
 
+use App\Sesame\User\Domain\Security\AuthenticatedUserProvider;
 use App\Shared\Domain\Bus\Command\Command;
 use App\Shared\Domain\Bus\Command\CommandBus;
 use App\Shared\Domain\Bus\Command\CommandResponse;
@@ -25,6 +26,7 @@ abstract class BaseController extends AbstractController
         protected readonly QueryBus $queryBus,
         protected readonly SerializerInterface $serializer,
         protected readonly ValidatorInterface $validator,
+        protected readonly AuthenticatedUserProvider $authenticatedUserProvider,
     ) {
         /** @var class-string<\Throwable> $exceptionClass */
         foreach ($this->exceptions() as $exceptionClass => $httpCode) {

@@ -5,6 +5,7 @@ $finder = (new PhpCsFixer\Finder())
     ->exclude(['var']);
 
 return (new PhpCsFixer\Config())
+    ->setUnsupportedPhpVersionAllowed(true)
     ->setRules([
         '@Symfony'                   => true,
         '@PSR12'                     => true,

@@ -56,6 +56,18 @@ rebuild:
 	make start
 	make deps
 
+install: deps jwt-keys installation-db
+	@echo "🎉 Complete installation finished ✅"
+
+jwt-keys:
+	@echo "🔐 Setting up JWT keypair..."
+	@if [ ! -f config/jwt/private.pem ]; then \
+		$(SYMFONY) lexik:jwt:generate-keypair; \
+		echo "JWT keypair generated ✅"; \
+	else \
+		echo "JWT keypair already exists ✅"; \
+	fi
+
 # 🧪 Tests
 test: create_env_file
 	 $(EXEC) sh -c "APP_ENV=test ./vendor/bin/phpunit -c phpunit.xml.dist --no-coverage --order-by=random"
@@ -78,7 +90,7 @@ bash:
 # 🦊 Linter
 style: lint static-analysis
 lint:
-	@$(EXEC) sh -c "PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix --diff"
+	@$(EXEC) ./vendor/bin/php-cs-fixer fix --diff
 	@echo "Coding Standar Fixer Executed ✅"
 
 lint-diff:
@@ -87,6 +99,9 @@ lint-diff:
 
 static-analysis:
 	@$(EXEC)  ./vendor/bin/phpstan analyse -c phpstan.dist.neon
+
+installation-db: create-db migrate
+	@echo "🗄️ Database installation completed ✅"
 
 rm-database:
 	@docker-compose rm -f database

@@ -7,9 +7,13 @@
     <entity name="App\Sesame\WorkEntry\Domain\Entities\WorkEntry" table="app_work_entry">
         <id name="id" type="uuid" length="36"/>
         <field name="userId" type="uuid" length="36"/>
-        <field name="startDate" type="datetime"/>
-        <field name="endDate" type="datetime"/>
+        <field name="startDate" type="datetime_immutable" nullable="true"/>
+        <field name="endDate" type="datetime_immutable" nullable="true"/>
         <embedded name="timestamps" class="App\Shared\Domain\ValueObjects\Timestamps" use-column-prefix="false"/>
+
+        <indexes>
+            <index name="idx_work_entry_user_id" columns="user_id"/>
+        </indexes>
     </entity>
 
 </doctrine-mapping>
