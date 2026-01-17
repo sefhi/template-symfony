@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Sesame\WorkEntry\Domain\Services;
+namespace App\Template\WorkEntry\Domain\Services;
 
-use App\Sesame\WorkEntry\Domain\Entities\WorkEntry;
-use App\Sesame\WorkEntry\Domain\Exceptions\WorkEntryNotFoundException;
-use App\Sesame\WorkEntry\Domain\Repositories\WorkEntryFindRepository;
+use App\Template\WorkEntry\Domain\Entities\WorkEntry;
+use App\Template\WorkEntry\Domain\Exceptions\WorkEntryNotFoundException;
+use App\Template\WorkEntry\Domain\Repositories\WorkEntryFindRepository;
 use Ramsey\Uuid\UuidInterface;
 
 class EnsureExistWorkEntryByIdService
