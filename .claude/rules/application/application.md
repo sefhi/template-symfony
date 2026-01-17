@@ -1,5 +1,5 @@
 ---
-paths: src/*Context/Application/**/*.php
+paths: src/*/Application/**/*.php
 ---
 
 # Application Layer Rules & Conventions
@@ -22,7 +22,7 @@ The Application layer MUST NOT import from:
 
 Allowed dependencies:
 - `App\{Context}\Domain\*` - Domain layer of same context
-- `App\Shared\Domain\*` - Base domain classes
+- `App\Shared\Domain\*` - Shared domain classes (Bus interfaces, base classes)
 
 ## Application Layer Structure
 
@@ -31,9 +31,10 @@ Application/
 ├── Commands/{Action}{Entity}/           # Commands & Command Handlers (write operations)
 │   ├── {Action}{Entity}Command.php
 │   └── {Action}{Entity}Handler.php
-├── Queries/{Entity}/             # Queries & Query Handlers (read operations)
-│   ├── Find{Entity}sQuery.php
-│   └── Find{Entity}sQueryHandler.php
+├── Queries/{Action}{Entity}/            # Queries & Query Handlers (read operations)
+│   ├── {Action}{Entity}Query.php
+│   ├── {Action}{Entity}Handler.php
+│   └── {Entity}Response.php             # Optional response DTO
 ```
 
 ## Commands
@@ -41,7 +42,8 @@ Application/
 Commands are write-only request objects that define what should happen.
 
 - **Location**: `Application/Commands/{Action}{Entity}/`
-- **Naming**: `{Action}{Entity}Command.php` (e.g., `CreateComplaintCommand.php`)
+- **Naming**: `{Action}{Entity}Command.php` (e.g., `CreateUserCommand.php`)
+- **Interface**: Implements `App\Shared\Domain\Bus\Command\Command`
 
 For detailed conventions, code examples, and command patterns, see `application-command.md`.
 
@@ -50,7 +52,8 @@ For detailed conventions, code examples, and command patterns, see `application-
 Command Handlers execute write operations by coordinating domain objects. They orchestrate the domain layer to fulfill use cases that modify state.
 
 - **Location**: `Application/Commands/{Action}{Entity}/`
-- **Naming**: `{Action}{Entity}Handler.php` (e.g., `CreateComplaintHandler.php`)
+- **Naming**: `{Action}{Entity}Handler.php` (e.g., `CreateUserHandler.php`)
+- **Interface**: Implements `App\Shared\Domain\Bus\Command\CommandHandler`
 - **Method**: `__invoke({Command} $command): void`
 
 For detailed conventions, code examples, and handler patterns, see `application-command.md`.
@@ -59,39 +62,42 @@ For detailed conventions, code examples, and handler patterns, see `application-
 
 Queries are read-only request objects that define what data is needed.
 
-- **Location**: `Application/Queries/{Action}{Entity}/` or `Application/Queries/{Action}{Entity}{bySomething}/`
-- **Naming**: `{Action}{Entity}sQuery.php` (e.g., `FindComplaintsQuery.php` or `FindComplaintByIdQuery.php`)
+- **Location**: `Application/Queries/{Action}{Entity}/`
+- **Naming**: `{Action}{Entity}Query.php` (e.g., `FindUserByIdQuery.php`, `ListWorkEntryQuery.php`)
+- **Interface**: Implements `App\Shared\Domain\Bus\Query\Query`
 
 For detailed conventions, code examples, and query patterns, see `application-query.md`.
 
 ## Query Handlers
 
-Query Handlers execute read operations by querying ViewRepositories and returning data. They are responsible for optimized read access to domain data.
+Query Handlers execute read operations by querying repositories and returning data. They are responsible for optimized read access to domain data.
 
-- **Location**: `Application/Queries/{Action}{Entity}/` or `Application/Queries/{Action}{Entity}{bySomething}/`
-- **Naming**: `{Action}{Query}Handler.php` (e.g., `FindComplaintsQueryHandler.php`)
-- **Return type**: `QueryResponse` (e.g., `FindComplaintsResponse` implements `QueryResponse`)
+- **Location**: `Application/Queries/{Action}{Entity}/`
+- **Naming**: `{Action}{Entity}Handler.php` (e.g., `FindUserByIdHandler.php`)
+- **Interface**: Implements `App\Shared\Domain\Bus\Query\QueryHandler`
+- **Method**: `__invoke({Query} $query): {Entity}Response`
+- **Return type**: Custom response DTO implementing `App\Shared\Domain\Bus\Query\QueryResponse`
 
 For detailed conventions, code examples, and handler patterns, see `application-query.md`.
 
 ## Cross-Context Communication
 
-When handlers need data from other contexts, use Domain Service interfaces (Ports).
+When handlers need data from other modules, use Domain Service interfaces (Ports).
 
 ```php
 // In handler
 public function __construct(
-    private readonly {Entity}Repository $repository,
-    private readonly UserClient $userClient, 
+    private readonly {Entity}SaveRepository $repository,
+    private readonly UserFindRepository $userRepository,
 ) {
 }
 
 public function __invoke(Create{Entity}Command $command): void
 {
-    $user = $this->userClient->findById($command->userId);
+    $user = $this->userRepository->findById(Uuid::fromString($command->userId));
 
     if (null === $user) {
-        throw new UserNotFound::withId($command->userId);
+        throw UserNotFoundException::withId($command->userId);
     }
 
     $entity = {Entity}::create(
@@ -104,13 +110,14 @@ public function __invoke(Create{Entity}Command $command): void
 
 ## Naming Conventions Summary
 
-| Type | Pattern                          | Example                 |
-|------|----------------------------------|-------------------------|
-| Command Handler | `{Action}{Entity}Handler`        | `CreateComplaintHandler` |
-| Command | `{Action}{Entity}Command`        | `CreateComplaintCommand` |
-| Query | `{Action}{Entity}sQuery`             | `FindComplaintsQuery`   |
-| Query Handler | `{Action}{Entity}sHandler`           | `FindComplaintsHandler` |
-| Handler Method | `__invoke` | `__invoke`              |
+| Type | Pattern                          | Example                  |
+|------|----------------------------------|--------------------------|
+| Command | `{Action}{Entity}Command`        | `CreateUserCommand`      |
+| Command Handler | `{Action}{Entity}Handler`        | `CreateUserHandler`      |
+| Query | `{Action}{Entity}Query`          | `FindUserByIdQuery`      |
+| Query Handler | `{Action}{Entity}Handler`        | `FindUserByIdHandler`    |
+| Query Response | `{Entity}Response`               | `UserResponse`           |
+| Handler Method | `__invoke`                       | `__invoke`               |
 
 ## PHP Standards
 
