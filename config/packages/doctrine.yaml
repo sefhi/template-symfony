@@ -33,20 +33,20 @@ doctrine:
             User:
                 type: xml
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Sesame/User/Infrastructure/Persistence/Doctrine/Mapping/Entities'
-                prefix: 'App\Sesame\User\Domain\Entities'
+                dir: '%kernel.project_dir%/src/Template/User/Infrastructure/Persistence/Doctrine/Mapping/Entities'
+                prefix: 'App\Template\User\Domain\Entities'
                 alias: User
             User_ValueObjects:
                 type: xml
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Sesame/User/Infrastructure/Persistence/Doctrine/Mapping/ValueObjects'
-                prefix: 'App\Sesame\User\Domain\ValueObjects'
+                dir: '%kernel.project_dir%/src/Template/User/Infrastructure/Persistence/Doctrine/Mapping/ValueObjects'
+                prefix: 'App\Template\User\Domain\ValueObjects'
                 alias: UserValueObjects
             WorkEntry:
                 type: xml
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Sesame/WorkEntry/Infrastructure/Persistence/Doctrine/Mapping/Entities'
-                prefix: 'App\Sesame\WorkEntry\Domain\Entities'
+                dir: '%kernel.project_dir%/src/Template/WorkEntry/Infrastructure/Persistence/Doctrine/Mapping/Entities'
+                prefix: 'App\Template\WorkEntry\Domain\Entities'
                 alias: WorkEntry
             Shared_ValueObjects:
                 type: xml

@@ -2,12 +2,12 @@ security:
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
-        App\Sesame\User\Infrastructure\Security\UserAdapter:
+        App\Template\User\Infrastructure\Security\UserAdapter:
             algorithm: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         app_user_provider:
-            id: App\Sesame\User\Infrastructure\Security\UserProvider
+            id: App\Template\User\Infrastructure\Security\UserProvider
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

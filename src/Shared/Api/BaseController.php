@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Api;
 
-use App\Sesame\User\Domain\Security\AuthenticatedUserProvider;
+use App\Template\User\Domain\Security\AuthenticatedUserProvider;
 use App\Shared\Domain\Bus\Command\Command;
 use App\Shared\Domain\Bus\Command\CommandBus;
 use App\Shared\Domain\Bus\Command\CommandResponse;

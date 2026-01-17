@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Utils\Factory\WorkEntry;
 
-use App\Sesame\WorkEntry\Domain\Entities\WorkEntry;
+use App\Template\WorkEntry\Domain\Entities\WorkEntry;
 use App\Shared\Domain\Aggregate\AggregateRoot;
-use Tests\Unit\Sesame\WorkEntry\Domain\Entities\WorkEntryMother;
+use Tests\Unit\Template\WorkEntry\Domain\Entities\WorkEntryMother;
 use Tests\Utils\Factory\AbstractFactory;
 
 /**

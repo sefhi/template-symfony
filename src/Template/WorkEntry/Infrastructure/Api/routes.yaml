@@ -1,0 +1,24 @@
+ListWorkEntry:
+  path: /
+  controller: App\Template\WorkEntry\Infrastructure\Api\ListWorkEntry\ListWorkEntryController
+  methods: [GET]
+
+CreateWorkEntry:
+  path: /
+  controller: App\Template\WorkEntry\Infrastructure\Api\CreateWorkEntry\CreateWorkEntryController
+  methods: [POST]
+
+FindWorkEntryById:
+  path: /{id}
+  controller: App\Template\WorkEntry\Infrastructure\Api\FindWorkEntryById\FindWorkEntryByIdController
+  methods: [GET]
+
+UpdateWorkEntry:
+  path: /{id}
+  controller: App\Template\WorkEntry\Infrastructure\Api\UpdateWorkEntry\UpdateWorkEntryController
+  methods: [PUT]
+
+DeleteWorkEntry:
+  path: /{id}
+  controller: App\Template\WorkEntry\Infrastructure\Api\DeleteWorkEntry\DeleteWorkEntryController
+  methods: [DELETE]

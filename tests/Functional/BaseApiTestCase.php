@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Functional;
 
-use App\Sesame\User\Domain\Entities\User;
-use App\Sesame\User\Infrastructure\Security\UserAdapter;
+use App\Template\User\Domain\Entities\User;
+use App\Template\User\Infrastructure\Security\UserAdapter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Tests\Unit\Sesame\User\Domain\Entities\UserMother;
+use Tests\Unit\Template\User\Domain\Entities\UserMother;
 use Tests\Utils\Factory\DoctrinePersistence;
 use Tests\Utils\Factory\PersistenceInterface;
 use Tests\Utils\Factory\User\UserFactory;

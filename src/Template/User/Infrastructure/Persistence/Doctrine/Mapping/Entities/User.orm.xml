@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Template\User\Domain\Entities\User" table="app_users">
+        <id name="id" type="uuid" length="36"/>
+
+        <embedded name="name" class="App\Template\User\Domain\ValueObjects\UserName" use-column-prefix="false"/>
+        <embedded name="email" class="App\Shared\Domain\ValueObjects\Email" use-column-prefix="false"/>
+        <embedded name="password" class="App\Template\User\Domain\ValueObjects\UserPassword" use-column-prefix="false"/>
+        <embedded name="timestamps" class="App\Shared\Domain\ValueObjects\Timestamps" use-column-prefix="false"/>
+    </entity>
+
+</doctrine-mapping>

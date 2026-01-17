@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Utils\Factory\User;
 
-use App\Sesame\User\Domain\Entities\User;
+use App\Template\User\Domain\Entities\User;
 use App\Shared\Domain\Aggregate\AggregateRoot;
-use Tests\Unit\Sesame\User\Domain\Entities\UserMother;
+use Tests\Unit\Template\User\Domain\Entities\UserMother;
 use Tests\Utils\Factory\AbstractFactory;
 
 /**

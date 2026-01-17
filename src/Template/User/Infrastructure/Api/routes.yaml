@@ -1,0 +1,23 @@
+CreateUser:
+  path: /
+  controller: App\Template\User\Infrastructure\Api\CreateUser\CreateUserController
+  methods: [POST]
+
+MeUser:
+  path: /me
+  controller: App\Template\User\Infrastructure\Api\Me\MeController
+
+UpdateUser:
+  path: /{id}
+  controller: App\Template\User\Infrastructure\Api\UpdateUser\UpdateUserController
+  methods: [PUT]
+
+DeleteUser:
+  path: /{id}
+  controller: App\Template\User\Infrastructure\Api\DeleteUser\DeleteUserController
+  methods: [DELETE]
+
+FindUserById:
+  path: /{id}
+  controller: App\Template\User\Infrastructure\Api\FindUserById\FindUserByIdController
+  methods: [GET]
