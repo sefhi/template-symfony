@@ -36,11 +36,20 @@ Application/
 │   └── Find{Entity}sQueryHandler.php
 ```
 
+## Commands
+
+Commands are write-only request objects that define what should happen.
+
+- **Location**: `Application/Commands/{Action}{Entity}/`
+- **Naming**: `{Action}{Entity}Command.php` (e.g., `CreateComplaintCommand.php`)
+
+For detailed conventions, code examples, and command patterns, see `application-command.md`.
+
 ## Command Handlers
 
 Command Handlers execute write operations by coordinating domain objects. They orchestrate the domain layer to fulfill use cases that modify state.
 
-- **Location**: `Application/Command/{Entity}/`
+- **Location**: `Application/Commands/{Action}{Entity}/`
 - **Naming**: `{Action}{Entity}Handler.php` (e.g., `CreateComplaintHandler.php`)
 - **Method**: `__invoke({Command} $command): void`
 
@@ -48,10 +57,10 @@ For detailed conventions, code examples, and handler patterns, see `application-
 
 ## Queries
 
-Queries are read-only request objects that define what data is needed. They implement permission interfaces and contain filter/pagination parameters via QueryParams.
+Queries are read-only request objects that define what data is needed.
 
-- **Location**: `Application/Query/{Entity}/`
-- **Naming**: `Find{Entity}sQuery.php` (always plural, filters determine results)
+- **Location**: `Application/Queries/{Action}{Entity}/` or `Application/Queries/{Action}{Entity}{bySomething}/`
+- **Naming**: `{Action}{Entity}sQuery.php` (e.g., `FindComplaintsQuery.php` or `FindComplaintByIdQuery.php`)
 
 For detailed conventions, code examples, and query patterns, see `application-query.md`.
 
@@ -59,9 +68,9 @@ For detailed conventions, code examples, and query patterns, see `application-qu
 
 Query Handlers execute read operations by querying ViewRepositories and returning data. They are responsible for optimized read access to domain data.
 
-- **Location**: `Application/Query/{Entity}/`
-- **Naming**: `{QueryName}Handler.php` (e.g., `FindComplaintsQueryHandler.php`)
-- **Return type**: `QueryResponse` from `Sesame\Ddd\Domain\QueryResponse`
+- **Location**: `Application/Queries/{Action}{Entity}/` or `Application/Queries/{Action}{Entity}{bySomething}/`
+- **Naming**: `{Action}{Query}Handler.php` (e.g., `FindComplaintsQueryHandler.php`)
+- **Return type**: `QueryResponse` (e.g., `FindComplaintsResponse` implements `QueryResponse`)
 
 For detailed conventions, code examples, and handler patterns, see `application-query.md`.
 
@@ -95,13 +104,13 @@ public function __invoke(Create{Entity}Command $command): void
 
 ## Naming Conventions Summary
 
-| Type | Pattern                          | Example                  |
-|------|----------------------------------|--------------------------|
+| Type | Pattern                          | Example                 |
+|------|----------------------------------|-------------------------|
 | Command Handler | `{Action}{Entity}Handler`        | `CreateComplaintHandler` |
 | Command | `{Action}{Entity}Command`        | `CreateComplaintCommand` |
-| Query | `Find{Entity}sQuery`             | `FindComplaintsQuery`    |
-| Query Handler | `Find{Entity}sHandler`           | `FindComplaintsHandler`  |
-| Handler Method | `__invoke` | `__invoke`               |
+| Query | `{Action}{Entity}sQuery`             | `FindComplaintsQuery`   |
+| Query Handler | `{Action}{Entity}sHandler`           | `FindComplaintsHandler` |
+| Handler Method | `__invoke` | `__invoke`              |
 
 ## PHP Standards
 
