@@ -17,10 +17,10 @@ Command Handlers execute write operations by coordinating domain objects. They o
 
 declare(strict_types=1);
 
-namespace App\{Context}\Application\Command\{Entity};
+namespace App\{Context}\Application\Commands\{Entity};
 
 use App\{Context}\Domain\Command\{Entity}\Create{Entity};
-use App\{Context}\Domain\Exception\{Entity}\{Entity}NotFound;
+use App\{Context}\Domain\Exceptions\{Entity}\{Entity}NotFound;
 use App\{Context}\Domain\Model\{Entity}\{Entity};
 use App\{Context}\Domain\Model\{Entity}\{Entity}Repository;
 
