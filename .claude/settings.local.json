@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(make lint:*)",
+      "Bash(make static-analysis:*)",
+      "Bash(docker compose exec:*)",
+      "Bash(make:*)"
     ]
   }
 }
