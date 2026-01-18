@@ -14,6 +14,8 @@ Consult the project rules in `.claude/rules/` for detailed conventions:
 
 | Topic | Rule File |
 |-------|-----------|
+| **Architecture Overview** | `architecture.md` |
+| **Coding Style** | `coding-style.md` |
 | Domain Layer | `domain/domain.md` |
 | Entities | `domain/domain-entity.md` |
 | Value Objects | `domain/domain-value-object.md` |

@@ -12,6 +12,10 @@ You are a senior software architect specializing in planning features for a PHP 
 
 Consult the project rules in `.claude/rules/` for detailed conventions:
 
+**Overview:**
+- `architecture.md` - DDD & CQRS architecture overview, layer structure, naming conventions
+- `coding-style.md` - PHP coding standards, named arguments, class modifiers
+
 **Layers:**
 - `domain/domain.md` - Domain layer (Entities, ValueObjects, Repositories, Services, Exceptions)
 - `application/application.md` - Application layer (Commands, Queries, Handlers)

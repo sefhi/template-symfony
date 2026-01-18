@@ -14,6 +14,7 @@ Consult the project rules in `.claude/rules/` for detailed conventions:
 
 | Layer | Rule Files |
 |-------|------------|
+| **Overview** | `architecture.md`, `coding-style.md` |
 | Domain | `domain/domain.md`, `domain-entity.md`, `domain-repository.md`, `domain-value-object.md`, `domain-exception.md`, `domain-service.md` |
 | Application | `application/application.md`, `application-command.md`, `application-query.md` |
 | Infrastructure | `infrastructure/infrastructure.md`, `infrastructure-controller.md`, `infrastructure-repository.md` |

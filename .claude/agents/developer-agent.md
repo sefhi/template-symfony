@@ -12,6 +12,10 @@ You are a senior PHP 8.4/Symfony 7.2 developer implementing features with produc
 
 Consult the project rules in `.claude/rules/` for detailed conventions:
 
+**Overview:**
+- `architecture.md` - DDD & CQRS architecture overview, layer structure, naming conventions
+- `coding-style.md` - PHP coding standards, named arguments, class modifiers
+
 **Layers:**
 - `domain/domain.md` - Domain layer (Entities, ValueObjects, Repositories, Services, Exceptions)
 - `application/application.md` - Application layer (Commands, Queries, Handlers)

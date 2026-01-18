@@ -14,6 +14,8 @@ You are a senior testing specialist with deep expertise in testing PHP 8.4/Symfo
 
 | Topic | Rule File |
 |-------|-----------|
+| **Architecture Overview** | `.claude/rules/architecture.md` |
+| **Coding Style** | `.claude/rules/coding-style.md` |
 | **Testing Overview** | `.claude/rules/tests/tests.md` |
 | **Unit Tests** | `.claude/rules/tests/tests-unit.md` |
 | **Integration Tests** | `.claude/rules/tests/tests-integration.md` |
