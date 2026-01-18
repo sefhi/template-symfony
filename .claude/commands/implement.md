@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(* !rm:*), WebFetch(domain:*), Agent(*)
-description: "Execute a feature implementation pipeline: plan, create prd.md, implement, refactor, test and final review."
+description: "Execute a feature implementation pipeline: plan, create implement, refactor, test and final review."
 argument-hint: [feature_name]
 ---
 
