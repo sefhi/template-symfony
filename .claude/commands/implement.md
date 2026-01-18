@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(* !rm:*), WebFetch(domain:*), Agent(*)
-description: "Execute a feature implementation pipeline: plan, create implement, refactor, test and final review."
+description: "Execute a feature implementation pipeline: plan, implement, refactor, test, review, and document."
 argument-hint: [feature_name]
 ---
 
@@ -8,8 +8,8 @@ argument-hint: [feature_name]
 Pass these vars to the subagents:
 - `feature_name` - the name of the feature to be implemented. $ARGUMENTS
 
-# CRITICAL: This is a 5-step pipeline. You MUST execute ALL steps in order.
-When this command is executed, you MUST run these 5 agents sequentially. Do NOT skip any step.
+# CRITICAL: This is a 6-step pipeline. You MUST execute ALL steps in order.
+When this command is executed, you MUST run these 6 agents sequentially. Do NOT skip any step.
 
 ## Rules Reference
 
@@ -28,7 +28,7 @@ Consult the project rules in `.claude/rules/` for detailed conventions:
 
 ## STEP 1: Planning (REQUIRED)
 
-**Say:** `[Claude Agent] Step 1/5: Activating Feature Planner...`
+**Say:** `[Claude Agent] Step 1/6: Activating Feature Planner...`
 
 You MUST invoke the @feature-planner-agent agent to:
 - Ask the user to describe the feature (if not already provided)
@@ -42,7 +42,7 @@ You MUST invoke the @feature-planner-agent agent to:
 
 ## STEP 2: Implementation (REQUIRED)
 
-**Say:** `[Claude Agent] Step 2/5: Activating Feature Implementer...`
+**Say:** `[Claude Agent] Step 2/6: Activating Feature Implementer...`
 
 You MUST invoke the @feature-developer-agent agent to:
 - Implement the plan task-by-task following layer order: Domain → Application → Infrastructure
@@ -58,7 +58,7 @@ You MUST invoke the @feature-developer-agent agent to:
 
 ## STEP 3: Refactoring (REQUIRED)
 
-**Say:** `[Claude Agent] Step 3/5: Activating Refactor Agent...`
+**Say:** `[Claude Agent] Step 3/6: Activating Refactor Agent...`
 
 You MUST invoke the @refactor-agent agent to:
 - Review all changed files for code quality
@@ -75,7 +75,7 @@ You MUST invoke the @refactor-agent agent to:
 
 ## STEP 4: Testing (REQUIRED)
 
-**Say:** `[Claude Agent] Step 4/5: Activating Testing Agent...`
+**Say:** `[Claude Agent] Step 4/6: Activating Testing Agent...`
 
 You MUST invoke the @unit-testing-agent agent to:
 - Review test coverage with `make test/coverage`
@@ -94,7 +94,7 @@ You MUST invoke the @unit-testing-agent agent to:
 
 ## STEP 5: Final Review (REQUIRED)
 
-**Say:** `[Claude Agent] Step 5/5: Activating Final Reviewer...`
+**Say:** `[Claude Agent] Step 5/6: Activating Final Reviewer...`
 
 You MUST invoke the @code-reviewer-agent agent to:
 - Verify all requirements are met
@@ -108,9 +108,29 @@ If CHANGES REQUESTED: go back to the appropriate step and fix issues.
 
 ---
 
+## STEP 6: Documentation (REQUIRED)
+
+**Say:** `[Claude Agent] Step 6/6: Activating Documentation Agent...`
+
+You MUST invoke the @documentation-agent agent to:
+- Analyze the implemented context and extract business logic
+- Document the domain model (entities, value objects, relationships)
+- Document all API endpoints with examples
+- Document all use cases (commands/queries) with flow explanations
+- Document error handling and exceptions
+- Create comprehensive documentation at `docs/contexts/{context-name}/README.md`
+- Ensure documentation is clear for new developers joining the team
+
+**The documentation must answer:**
+- What does this context do? (Business purpose)
+- How does it work? (Technical flow)
+- How do I use the API? (Endpoints with examples)
+
+---
+
 ## Final Summary (REQUIRED)
 
-After completing all 5 steps, display:
+After completing all 6 steps, display:
 
 ```
 ## Feature Complete: [Name]
@@ -121,6 +141,7 @@ After completing all 5 steps, display:
 - Step 3: Refactoring - DONE
 - Step 4: Testing - DONE
 - Step 5: Final Review - APPROVED
+- Step 6: Documentation - DONE
 
 ### Files Changed
 - Created: X files
@@ -134,6 +155,10 @@ After completing all 5 steps, display:
 ### Quality Checks
 - PHPStan: Passed
 - PHP CS Fixer: Passed
+
+### Documentation
+- Location: docs/contexts/{context-name}/README.md
+- Status: Generated
 ```
 
 **IMPORTANT:** Respond in the user's language throughout the process.
@@ -149,6 +174,8 @@ After completing all 5 steps, display:
 | `refactor-agent` | Improve code quality without changing behavior |
 | `unit-testing-agent` | Write comprehensive PHPUnit tests with proper coverage |
 | `code-reviewer-agent` | Quality gate: verify requirements, security, and tests |
+| `documentation-agent` | Generate comprehensive business logic documentation for contexts |
+| `documentation-sync-agent` | Keep documentation in sync when code changes (use independently) |
 
 ---
 

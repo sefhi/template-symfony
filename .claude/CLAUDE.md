@@ -65,7 +65,9 @@ src/{Context}/{SubModule}/
 └── Infrastructure/   # Controllers, Request DTOs, Doctrine repositories
 ```
 
-**Current contexts:** `Health`, `BookStore`, `Template` (User, WorkEntry, TimeTracking)
+**Current contexts:** `Health`, `BookStore`, `Template` (User, WorkEntry, TimeTracking), `Subtitle`
+
+**Context Documentation:** See `docs/contexts/{context-name}/README.md` for business logic documentation.
 
 ### Message Buses
 
@@ -117,6 +119,7 @@ Tests use GIVEN-WHEN-THEN comments, `#[Test]` attributes, and `itShould{Action}{
 - Auth: `POST /api/login` (JWT)
 - Users: `/api/users` (CRUD)
 - Work Entries: `/api/work-entries` (CRUD + clock-in/clock-out)
+- Subtitles: `/api/subtitles` (Upload, List, Get, Delete)
 
 ---
 
