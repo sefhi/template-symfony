@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Template\User\Application\Queries\FindUserById;
 
-use App\Template\User\Domain\Services\EnsureExistsUserByIdService;
 use App\Shared\Domain\Bus\Query\QueryHandler;
+use App\Template\User\Domain\Services\EnsureExistsUserByIdService;
 use Ramsey\Uuid\Uuid;
 
 final readonly class FindUserByIdHandler implements QueryHandler

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Template\User\Application\Queries\FindUserById;
 
-use App\Template\User\Domain\Entities\User;
 use App\Shared\Domain\Bus\Query\QueryResponse;
+use App\Template\User\Domain\Entities\User;
 
 final readonly class UserResponse implements \JsonSerializable, QueryResponse
 {

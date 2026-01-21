@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Template\User\Application\Commands\CreateUser;
 
+use App\Shared\Domain\Bus\Command\CommandHandler;
 use App\Template\User\Domain\Entities\User;
 use App\Template\User\Domain\Repositories\UserSaveRepository;
 use App\Template\User\Domain\Security\PasswordHasher;
-use App\Shared\Domain\Bus\Command\CommandHandler;
 
 final readonly class CreateUserHandler implements CommandHandler
 {

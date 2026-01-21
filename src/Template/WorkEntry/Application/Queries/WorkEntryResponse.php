@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Template\WorkEntry\Application\Queries;
 
-use App\Template\WorkEntry\Domain\Entities\WorkEntry;
 use App\Shared\Domain\Bus\Query\QueryResponse;
+use App\Template\WorkEntry\Domain\Entities\WorkEntry;
 
 final readonly class WorkEntryResponse implements \JsonSerializable, QueryResponse
 {

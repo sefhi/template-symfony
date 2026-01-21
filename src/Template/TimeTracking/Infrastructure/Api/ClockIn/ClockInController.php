@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Template\TimeTracking\Infrastructure\Api\ClockIn;
 
+use App\Shared\Api\BaseController;
 use App\Template\TimeTracking\Domain\Exceptions\WorkEntryAlreadyClockedInException;
 use App\Template\TimeTracking\Domain\Exceptions\WorkEntryAlreadyClockedOutException;
 use App\Template\TimeTracking\Domain\Exceptions\WorkEntryNotBelongToUserException;
 use App\Template\WorkEntry\Domain\Exceptions\WorkEntryNotFoundException;
-use App\Shared\Api\BaseController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;

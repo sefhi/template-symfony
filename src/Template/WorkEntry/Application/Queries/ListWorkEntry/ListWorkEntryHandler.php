@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Template\WorkEntry\Application\Queries\ListWorkEntry;
 
-use App\Template\WorkEntry\Domain\Repositories\WorkEntryFindRepository;
 use App\Shared\Domain\Bus\Query\QueryHandler;
 use App\Shared\Domain\Criteria\Criteria;
 use App\Shared\Domain\Criteria\Filter;
@@ -16,6 +15,7 @@ use App\Shared\Domain\Criteria\Order;
 use App\Shared\Domain\Criteria\OrderBy;
 use App\Shared\Domain\Criteria\OrderType;
 use App\Shared\Domain\Criteria\OrderTypes;
+use App\Template\WorkEntry\Domain\Repositories\WorkEntryFindRepository;
 use Ramsey\Uuid\Uuid;
 
 final readonly class ListWorkEntryHandler implements QueryHandler

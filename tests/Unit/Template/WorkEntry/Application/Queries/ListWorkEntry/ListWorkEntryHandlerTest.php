@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Template\WorkEntry\Application\Queries\ListWorkEntry;
 
+use App\Shared\Domain\Criteria\FilterOperator;
+use App\Shared\Domain\Criteria\OrderType;
+use App\Shared\Domain\Criteria\OrderTypes;
 use App\Template\WorkEntry\Application\Queries\ListWorkEntry\ListWorkEntryHandler;
 use App\Template\WorkEntry\Application\Queries\ListWorkEntry\ListWorkEntryQuery;
 use App\Template\WorkEntry\Application\Queries\ListWorkEntry\ListWorkEntryResponse;
 use App\Template\WorkEntry\Domain\Collections\WorkEntries;
 use App\Template\WorkEntry\Domain\Repositories\WorkEntryFindRepository;
-use App\Shared\Domain\Criteria\FilterOperator;
-use App\Shared\Domain\Criteria\OrderType;
-use App\Shared\Domain\Criteria\OrderTypes;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Tests\Unit\Template\WorkEntry\Domain\Entities\WorkEntryMother;
 use Tests\Unit\Shared\Domain\Criteria\CriteriaMother;
 use Tests\Unit\Shared\Domain\Criteria\FilterMother;
 use Tests\Unit\Shared\Domain\Criteria\FiltersMother;
 use Tests\Unit\Shared\Domain\Criteria\OrderByMother;
 use Tests\Unit\Shared\Domain\Criteria\OrderMother;
+use Tests\Unit\Template\WorkEntry\Domain\Entities\WorkEntryMother;
 use Tests\Utils\Mother\MotherCreator;
 
 final class ListWorkEntryHandlerTest extends TestCase

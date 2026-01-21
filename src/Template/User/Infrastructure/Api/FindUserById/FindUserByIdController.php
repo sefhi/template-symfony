@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Template\User\Infrastructure\Api\FindUserById;
 
+use App\Shared\Api\BaseController;
 use App\Template\User\Application\Queries\FindUserById\FindUserByIdQuery;
 use App\Template\User\Domain\Exceptions\UserNotFoundException;
-use App\Shared\Api\BaseController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 

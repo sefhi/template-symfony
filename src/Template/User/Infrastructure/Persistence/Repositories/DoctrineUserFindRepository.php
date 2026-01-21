@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Template\User\Infrastructure\Persistence\Repositories;
 
+use App\Shared\Infrastructure\Persistence\Repository\DoctrineRepository;
 use App\Template\User\Domain\Entities\User;
 use App\Template\User\Domain\Repositories\UserFindRepository;
-use App\Shared\Infrastructure\Persistence\Repository\DoctrineRepository;
 use Ramsey\Uuid\UuidInterface;
 
 final readonly class DoctrineUserFindRepository extends DoctrineRepository implements UserFindRepository

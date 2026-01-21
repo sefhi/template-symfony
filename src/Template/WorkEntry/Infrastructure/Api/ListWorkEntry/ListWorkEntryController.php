@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Template\WorkEntry\Infrastructure\Api\ListWorkEntry;
 
-use App\Template\WorkEntry\Application\Queries\ListWorkEntry\ListWorkEntryQuery;
 use App\Shared\Api\BaseController;
+use App\Template\WorkEntry\Application\Queries\ListWorkEntry\ListWorkEntryQuery;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Template\WorkEntry\Infrastructure\Persistence\Repositories;
 
-use App\Template\WorkEntry\Domain\Collections\WorkEntries;
-use App\Template\WorkEntry\Domain\Entities\WorkEntry;
-use App\Template\WorkEntry\Domain\Repositories\WorkEntryFindRepository;
 use App\Shared\Domain\Criteria\Criteria;
 use App\Shared\Infrastructure\Persistence\Criteria\DoctrineCriteriaConverter;
 use App\Shared\Infrastructure\Persistence\Repository\DoctrineRepository;
+use App\Template\WorkEntry\Domain\Collections\WorkEntries;
+use App\Template\WorkEntry\Domain\Entities\WorkEntry;
+use App\Template\WorkEntry\Domain\Repositories\WorkEntryFindRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
 

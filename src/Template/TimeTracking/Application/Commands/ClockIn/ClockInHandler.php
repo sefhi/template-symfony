@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Template\TimeTracking\Application\Commands\ClockIn;
 
+use App\Shared\Domain\Bus\Command\CommandHandler;
 use App\Template\TimeTracking\Domain\Exceptions\WorkEntryAlreadyClockedInException;
 use App\Template\TimeTracking\Domain\Exceptions\WorkEntryAlreadyClockedOutException;
 use App\Template\TimeTracking\Domain\Exceptions\WorkEntryNotBelongToUserException;
 use App\Template\WorkEntry\Domain\Repositories\WorkEntrySaveRepository;
 use App\Template\WorkEntry\Domain\Services\EnsureExistWorkEntryByIdService;
-use App\Shared\Domain\Bus\Command\CommandHandler;
 use Ramsey\Uuid\Uuid;
 
 final readonly class ClockInHandler implements CommandHandler

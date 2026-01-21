@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Template\WorkEntry\Application\Commands\CreateWorkEntry;
 
+use App\Shared\Domain\Bus\Command\CommandHandler;
 use App\Template\User\Domain\Services\EnsureExistsUserByIdService;
 use App\Template\WorkEntry\Domain\Entities\WorkEntry;
 use App\Template\WorkEntry\Domain\Repositories\WorkEntrySaveRepository;
-use App\Shared\Domain\Bus\Command\CommandHandler;
 use Ramsey\Uuid\Uuid;
 
 final readonly class CreateWorkEntryHandler implements CommandHandler

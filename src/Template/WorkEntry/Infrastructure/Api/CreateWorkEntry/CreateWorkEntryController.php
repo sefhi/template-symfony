@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Template\WorkEntry\Infrastructure\Api\CreateWorkEntry;
 
-use App\Template\User\Domain\Exceptions\UserNotFoundException;
 use App\Shared\Api\BaseController;
+use App\Template\User\Domain\Exceptions\UserNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;

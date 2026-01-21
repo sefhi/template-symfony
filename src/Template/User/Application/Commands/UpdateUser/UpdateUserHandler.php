@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Template\User\Application\Commands\UpdateUser;
 
+use App\Shared\Domain\Bus\Command\CommandHandler;
 use App\Template\User\Domain\Exceptions\UserNotFoundException;
 use App\Template\User\Domain\Repositories\UserFindRepository;
 use App\Template\User\Domain\Repositories\UserSaveRepository;
-use App\Shared\Domain\Bus\Command\CommandHandler;
 use Ramsey\Uuid\Uuid;
 
 final readonly class UpdateUserHandler implements CommandHandler

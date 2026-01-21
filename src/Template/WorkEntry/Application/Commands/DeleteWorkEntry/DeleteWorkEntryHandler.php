@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Template\WorkEntry\Application\Commands\DeleteWorkEntry;
 
+use App\Shared\Domain\Bus\Command\CommandHandler;
 use App\Template\WorkEntry\Domain\Repositories\WorkEntrySaveRepository;
 use App\Template\WorkEntry\Domain\Services\EnsureExistWorkEntryByIdService;
-use App\Shared\Domain\Bus\Command\CommandHandler;
 use Ramsey\Uuid\Uuid;
 
 final readonly class DeleteWorkEntryHandler implements CommandHandler

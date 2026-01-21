@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Template\User\Infrastructure\Api\Me;
 
-use App\Template\User\Application\Queries\Me\GetUserMeQuery;
 use App\Shared\Api\BaseController;
+use App\Template\User\Application\Queries\Me\GetUserMeQuery;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;

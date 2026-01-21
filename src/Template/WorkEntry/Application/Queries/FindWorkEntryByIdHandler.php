@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Template\WorkEntry\Application\Queries;
 
-use App\Template\WorkEntry\Domain\Services\EnsureExistWorkEntryByIdService;
 use App\Shared\Domain\Bus\Query\QueryHandler;
+use App\Template\WorkEntry\Domain\Services\EnsureExistWorkEntryByIdService;
 use Ramsey\Uuid\Uuid;
 
 final readonly class FindWorkEntryByIdHandler implements QueryHandler

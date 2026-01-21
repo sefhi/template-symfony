@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Template\WorkEntry\Application\Queries\ListWorkEntry;
 
+use App\Shared\Domain\Bus\Query\QueryResponse;
 use App\Template\WorkEntry\Application\Queries\WorkEntryResponse;
 use App\Template\WorkEntry\Domain\Collections\WorkEntries;
 use App\Template\WorkEntry\Domain\Entities\WorkEntry;
-use App\Shared\Domain\Bus\Query\QueryResponse;
 
 final readonly class ListWorkEntryResponse implements QueryResponse, \JsonSerializable
 {

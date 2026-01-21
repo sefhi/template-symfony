@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Template\WorkEntry\Infrastructure\Api\DeleteWorkEntry;
 
+use App\Shared\Api\BaseController;
 use App\Template\WorkEntry\Application\Commands\DeleteWorkEntry\DeleteWorkEntryCommand;
 use App\Template\WorkEntry\Domain\Exceptions\WorkEntryNotFoundException;
-use App\Shared\Api\BaseController;
 use Symfony\Component\HttpFoundation\Response;
 
 final class DeleteWorkEntryController extends BaseController

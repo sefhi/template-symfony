@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Utils\Factory\User;
 
-use App\Template\User\Domain\Entities\User;
 use App\Shared\Domain\Aggregate\AggregateRoot;
+use App\Template\User\Domain\Entities\User;
 use Tests\Unit\Template\User\Domain\Entities\UserMother;
 use Tests\Utils\Factory\AbstractFactory;
 

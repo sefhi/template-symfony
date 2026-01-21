@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Template\WorkEntry\Domain\Collections;
 
-use App\Template\WorkEntry\Domain\Entities\WorkEntry;
 use App\Shared\Domain\Utils\Collection;
+use App\Template\WorkEntry\Domain\Entities\WorkEntry;
 
 /**
  * @extends Collection<WorkEntry>

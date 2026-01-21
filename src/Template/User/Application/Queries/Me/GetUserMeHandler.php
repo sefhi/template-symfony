@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Template\User\Application\Queries\Me;
 
+use App\Shared\Domain\Bus\Query\QueryHandler;
 use App\Template\User\Application\Queries\FindUserById\UserResponse;
 use App\Template\User\Domain\Security\AuthenticatedUserProvider;
-use App\Shared\Domain\Bus\Query\QueryHandler;
 
 final readonly class GetUserMeHandler implements QueryHandler
 {

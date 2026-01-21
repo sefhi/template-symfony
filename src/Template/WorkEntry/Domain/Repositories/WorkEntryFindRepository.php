@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Template\WorkEntry\Domain\Repositories;
 
+use App\Shared\Domain\Criteria\Criteria;
 use App\Template\WorkEntry\Domain\Collections\WorkEntries;
 use App\Template\WorkEntry\Domain\Entities\WorkEntry;
-use App\Shared\Domain\Criteria\Criteria;
 use Ramsey\Uuid\UuidInterface;
 
 interface WorkEntryFindRepository

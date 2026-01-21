@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Template\User\Domain\Entities;
 
-use App\Template\User\Domain\ValueObjects\UserName;
-use App\Template\User\Domain\ValueObjects\UserPassword;
 use App\Shared\Domain\Aggregate\AggregateRoot;
 use App\Shared\Domain\ValueObjects\Email;
 use App\Shared\Domain\ValueObjects\Timestamps;
+use App\Template\User\Domain\ValueObjects\UserName;
+use App\Template\User\Domain\ValueObjects\UserPassword;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
